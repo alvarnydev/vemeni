@@ -1,5 +1,4 @@
 Hallo zusammen,
-
 in der vorliegenden Repository ist eine Struktur für die Abgaben vorgegeben.
 
 Bitte platzieren Sie Ihre Deliverables entsprechend der Struktur, z.B. Lastenheft in den Ordner ../Dokumentation/01-Lastenheft etc.
