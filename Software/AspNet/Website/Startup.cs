@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Website.Services;
 
 namespace Website
 {
@@ -24,6 +25,7 @@ namespace Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddTransient<JsonFileJobService>(); // Added custom service in transient mode (gets remade on every request)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
