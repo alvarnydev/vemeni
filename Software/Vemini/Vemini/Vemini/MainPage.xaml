@@ -4,13 +4,22 @@
              xmlns:local="clr-namespace:Vemini"
              x:Class="Vemini.MainPage">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="CornflowerBlue">
         <!-- Place new controls here -->
-        <Label Text="Willkommen bei VergissMeinNicht!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Button Text="Los geht's!"
-                />
+        <Label Text="Willkommen bei VergissMeinNicht!"
+               FontSize="26"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand" 
+               />
+        
+        <Button BackgroundColor="White" 
+                Text="     Los geht's!    "
+                TextColor="CornflowerBlue"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+        />
     </StackLayout>
 
 </ContentPage>
