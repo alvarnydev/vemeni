@@ -1,12 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:widget="clr-namespace:Android.Widget;assembly=Mono.Android"
              x:Class="Vemini.Anmeldung">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <RelativeLayout BackgroundColor="CornflowerBlue">
+            <Label Text="Anmeldung"
+                   TextColor="White"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   RelativeLayout.WidthConstraint= "{
+                ConstraintExpression 
+                Type=RelativeToParent,
+                Property= Width,
+                Factor=1}" 
+                   RelativeLayout.YConstraint="{
+                ConstraintExpression
+                Type=RelativeToParent,
+                Property=Height,
+                Factor=0.15}"/>
+            <!--<BoxView BackgroundColor="CornflowerBlue"
+                     HeightRequest="150"
+                     RelativeLayout.WidthConstraint="{
+                ConstraintExpression
+                Type=RelativeToParent,
+                Property=Width,
+                Factor=1}"
+                     RelativeLayout.YConstraint="{
+                ConstraintExpression
+                Type=RelativeToParent,
+                Property=Height,
+                Factor=0.40}"
+                     ></BoxView>-->
+            <RelativeLayout>
+                <Entry Placeholder="Email-Adresse"
+                       PlaceholderColor="White"
+                       WidthRequest="270"
+                       VerticalOptions="Center"
+                       RelativeLayout.YConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Height, 
+                    Factor=0.46,
+                    }"
+                ></Entry>
+                <Entry Placeholder="Password"
+                       PlaceholderColor="White"
+                       IsPassword="True"
+                       VerticalOptions="Center"
+                       WidthRequest="270"
+                       RelativeLayout.YConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Height, 
+                    Factor=0.58,
+                    }"
+                ></Entry>
+            </RelativeLayout>
+            <RelativeLayout>
+                <Button BackgroundColor="White"
+                        Text="Anmelden"
+                        TextColor="CornflowerBlue"></Button>
+            </RelativeLayout>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -13,7 +13,7 @@ namespace Vemini
 
             MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = Color.Black
+                BarBackgroundColor = Color.CornflowerBlue
             };
         }
 
