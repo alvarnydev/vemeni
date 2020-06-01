@@ -19,7 +19,7 @@
                 ConstraintExpression
                 Type=RelativeToParent,
                 Property=Height,
-                Factor=0.15}"/>
+                Factor=0.1}"/>
             <!--<BoxView BackgroundColor="CornflowerBlue"
                      HeightRequest="150"
                      RelativeLayout.WidthConstraint="{
@@ -34,7 +34,8 @@
                 Factor=0.40}"
                      ></BoxView>-->
             <RelativeLayout>
-                <Entry Placeholder="Email-Adresse"
+                <Entry Text=""
+                       Placeholder="Email-Adresse"
                        PlaceholderColor="White"
                        WidthRequest="270"
                        VerticalOptions="Center"
@@ -42,7 +43,7 @@
                     ConstraintExpression 
                     Type=RelativeToParent, 
                     Property=Height, 
-                    Factor=0.46,
+                    Factor=0.4
                     }"
                 ></Entry>
                 <Entry Placeholder="Password"
@@ -54,14 +55,67 @@
                     ConstraintExpression 
                     Type=RelativeToParent, 
                     Property=Height, 
-                    Factor=0.58,
-                    }"
+                    Factor=0.53}"
                 ></Entry>
             </RelativeLayout>
             <RelativeLayout>
                 <Button BackgroundColor="White"
                         Text="Anmelden"
-                        TextColor="CornflowerBlue"></Button>
+                        TextColor="CornflowerBlue"
+                        RelativeLayout.YConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Height, 
+                    Factor=0.6}"
+                        RelativeLayout.XConstraint="{
+                    ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Width,
+                    Factor=0.1415}"
+                        RelativeLayout.WidthConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Width, 
+                    Factor=0.8}"
+                        ></Button>
+                <Button BackgroundColor="White"
+                        Text="Passwort vergessen"
+                        TextColor="CornflowerBlue"
+                        RelativeLayout.YConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Height, 
+                    Factor=0.7}"
+                        RelativeLayout.XConstraint="{
+                    ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Width,
+                    Factor=0.1415}"
+                        RelativeLayout.WidthConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Width, 
+                    Factor=0.8}"
+                        ></Button>
+                <Button BackgroundColor="White"
+                        Text="Registrieren"
+                        TextColor="CornflowerBlue"
+                        RelativeLayout.YConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Height, 
+                    Factor=0.8}"
+                        RelativeLayout.XConstraint="{
+                    ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Width,
+                    Factor=0.1415}"
+                        RelativeLayout.WidthConstraint="{
+                    ConstraintExpression 
+                    Type=RelativeToParent, 
+                    Property=Width, 
+                    Factor=0.8}"
+                        ></Button>
             </RelativeLayout>
         </RelativeLayout>
     </ContentPage.Content>
