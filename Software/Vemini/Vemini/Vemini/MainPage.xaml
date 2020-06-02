@@ -9,6 +9,7 @@
     <StackLayout BackgroundColor="CornflowerBlue">
         <!-- Place new controls here -->
         <Label Text="Willkommen bei VergissMeinNicht!"
+               TextColor="White"
                FontSize="26"
                FontAttributes="Bold"
                HorizontalTextAlignment="Center"
