@@ -12,27 +12,31 @@ namespace Website.Models
 
         // Id
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
+
+        // Image
+        [JsonPropertyName("image")]
+        public string Image { get; set; }
 
         // Creator
         [JsonPropertyName("creator")]
         public string Creator { get; set; }
 
         // Creator rating
-        [JsonPropertyName("creator_rating")]
-        public int creator_rating { get; set; }
+        [JsonPropertyName("creator_ratings")]
+        public int[] Creator_ratings { get; set; }
 
         // Date
         [JsonPropertyName("date")]
-        public string date { get; set; }
+        public string Date { get; set; }
 
         // Title
         [JsonPropertyName("title")]
-        public string title { get; set; }
+        public string Title { get; set; }
 
         // Description
         [JsonPropertyName("description")]
-        public string description { get; set; }
+        public string Description { get; set; }
 
 
         // Override ToString

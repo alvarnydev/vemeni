@@ -1,18 +1,61 @@
 [
-	{
-		"id": "01",
-		"creator": "Hans Peter",
-		"creator_rating": "3.9",
-		"date": "30.05.2020",
-		"title": "Einkaufshilfe",
-		"description": "Bitte bei Rewe x einkaufen"
-	},
-	{
-		"id": "02",
-		"creator": "Horst Peter",
-		"creator_rating" : "4.3", 
-		"date": "31.05.2020",
-		"title": "Tragehilfe",
-		"description": "Bitte Stühle tragen"
-	}
+  {
+    "id": 1,
+    "image": "https://cdn.pflege.de/bilder/einkaufs-begleitung.jpg",
+    "creator": "Hans Peter",
+    "creator_ratings": [
+      5,
+      4,
+      5,
+      2,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "date": "30.05.2020",
+    "title": "Einkaufhilfe",
+    "description": "Bitte bei Rewe x einkaufen"
+  },
+  {
+    "id": 2,
+    "image": "https://blog.used-design.com/wp-content/uploads/2018/09/maenner-tragen-beiges-sofa-640x427.jpg",
+    "creator": "Horst Peter",
+    "creator_ratings": [
+      4,
+      2,
+      1,
+      1,
+      5,
+      5
+    ],
+    "date": "31.05.2020",
+    "title": "Tragehilfe",
+    "description": "Bitte St\u00FChle tragen"
+  }
 ]
