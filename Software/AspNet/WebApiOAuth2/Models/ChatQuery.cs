@@ -6,19 +6,19 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
-    public class UserQuery
+    public class ChatQuery
     {
         public AppDb Db { get; }
 
-        public UserQuery(AppDb db)
+        public ChatQuery(AppDb db)
         {
             Db = db;
         }
 
-        public async Task<User> FindOneAsync(int id)
+        public async Task<Chat> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `username`, `phone`, `email`, `address_plz`, `address_city`, `address_street`, `address_strnmbr`, `img`, `lastvisit`, `created` FROM `users` WHERE `id` = @id";
+            cmd.CommandText = @"SELECT `user1`, `user2` FROM `chats` WHERE `id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -29,10 +29,10 @@ namespace WebApiOAuth2.Models
             return result.Count > 0 ? result[0] : null;
         }
 
-        public async Task<List<User>> LatestPostsAsync()
+        public async Task<List<Chat>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `username`, `phone`, `email`, `address_plz`, `address_city`, `address_street`, `address_strnmbr`, `img`, `lastvisit`, `created` FROM `users` ORDER BY `id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `user1`, `user2` ORDER BY `id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -40,31 +40,23 @@ namespace WebApiOAuth2.Models
         {
             using var txn = await Db.Connection.BeginTransactionAsync();
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"DELETE FROM `users`";
+            cmd.CommandText = @"DELETE FROM `chats`";
             await cmd.ExecuteNonQueryAsync();
             await txn.CommitAsync();
         }
 
-        private async Task<List<User>> ReadAllAsync(DbDataReader reader)
+        private async Task<List<Chat>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<User>();
+            var posts = new List<Chat>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var post = new User(Db)
+                    var post = new Chat(Db)
                     {
                         Id = reader.GetInt32(0),
-                        Username = reader.GetString(1),
-                        Phone = reader.GetString(2),
-                        Email = reader.GetString(3),
-                        AddressPlz = reader.GetInt32(4),
-                        AddressCity = reader.GetString(5),
-                        AddressStreet = reader.GetString(6),
-                        AddressStrnmbr = reader.GetInt32(7),
-                        Img = reader.GetString(8),
-                        Lastvisit = reader.GetDateTime(9),
-                        Created = reader.GetDateTime(10)
+                        User1 = reader.GetInt32(1),
+                        User2 = reader.GetInt32(2)
                     };
                     posts.Add(post);
                 }

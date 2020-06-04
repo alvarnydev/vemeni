@@ -18,9 +18,15 @@ namespace WebApiOAuth2.Models
 
         public string Description { get; set; }
 
+        public double LocationLon { get; set; }
+
+        public double LocationLat { get; set; }
+
         public DateTime Date { get; set; }
 
         public int Status { get; set; }
+
+        public int AcceptedBy { get; set; }
 
 
         internal AppDb Db { get; set; }
@@ -37,7 +43,7 @@ namespace WebApiOAuth2.Models
         public async Task InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"INSERT INTO `jobs` (`user`, `type`, `title`, `description`, `date`, `status`) VALUES (@user, @type, @title, @description, @date, @status);";
+            cmd.CommandText = @"INSERT INTO `jobs` (`user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status`, `accepted_by`) VALUES (@user, @type, @title, @description, @location_lon, @location_lat, @date, @status, @accepted_by);";
             BindParams(cmd);
             await cmd.ExecuteNonQueryAsync();
             Id = (int)cmd.LastInsertedId;
@@ -46,7 +52,7 @@ namespace WebApiOAuth2.Models
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE `jobs` SET `user` = @user, `type` = @type, `title` = @title , `description` = @description , `date` = @date , `status` = @status WHERE `id` = @id;";
+            cmd.CommandText = @"UPDATE `jobs` SET `user` = @user, `type` = @type, `title` = @title, `description` = @description, `location_lon` = @location_lon, `location_lat` = @location_lat, `date` = @date, `status` = @status, `accepted_by` = @accepted_by WHERE `id` = @id;";
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
@@ -98,6 +104,18 @@ namespace WebApiOAuth2.Models
             });
             cmd.Parameters.Add(new MySqlParameter
             {
+                ParameterName = "@location_lon",
+                DbType = DbType.Double,
+                Value = LocationLon,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@location_lat",
+                DbType = DbType.Double,
+                Value = LocationLat,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
                 ParameterName = "@date",
                 DbType = DbType.DateTime,
                 Value = Date,
@@ -109,6 +127,5 @@ namespace WebApiOAuth2.Models
                 Value = Status,
             });
         }
-
     }
 }

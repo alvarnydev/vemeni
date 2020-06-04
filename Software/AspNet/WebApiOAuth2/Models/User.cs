@@ -17,7 +17,13 @@ namespace WebApiOAuth2.Models
 
         public string Email { get; set; }
 
-        public string Address { get; set; }
+        public int AddressPlz { get; set; }
+
+        public string AddressCity { get; set; }
+
+        public string AddressStreet { get; set; }
+
+        public int AddressStrnmbr { get; set; }
 
         public string Img { get; set; }
 
@@ -40,7 +46,7 @@ namespace WebApiOAuth2.Models
         public async Task InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"INSERT INTO `users` (`username`, `phone`, `email`, `address`, `img`, `lastvisit`, `created`) VALUES (@username, @phone, @email, @address, @img, @lastvisit, @created);";
+            cmd.CommandText = @"INSERT INTO `users` (`username`, `phone`, `email`, `address_plz`, `address_city`, `address_street`, `address_strnmbr`, `img`, `lastvisit`, `created`) VALUES (@username, @phone, @email, @address, @img, @lastvisit, @created);";
             BindParams(cmd);
             await cmd.ExecuteNonQueryAsync();
             Id = (int)cmd.LastInsertedId;
@@ -49,7 +55,7 @@ namespace WebApiOAuth2.Models
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE `users` SET `username` = @username, `phone` = @phone, `email` = @email, `address` = @address, `img` = @img, `lastvisit` = @lastvisit, `created` = @created WHERE `id` = @id;";
+            cmd.CommandText = @"UPDATE `users` SET `username` = @username, `phone` = @phone, `email` = @email, `address_plz` = @address_plz, `address_city` = @address_city, `address_street` = @address_street, `address_strnmbr` = @address_strnmbr, `img` = @img, `lastvisit` = @lastvisit, `created` = @created WHERE `id` = @id;";
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
@@ -95,9 +101,27 @@ namespace WebApiOAuth2.Models
             });
             cmd.Parameters.Add(new MySqlParameter
             {
-                ParameterName = "@address",
+                ParameterName = "@address_plz",
+                DbType = DbType.Int32,
+                Value = AddressPlz,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@address_city",
                 DbType = DbType.String,
-                Value = Address,
+                Value = AddressPlz,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@address_street",
+                DbType = DbType.String,
+                Value = AddressPlz,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@address_strnmbr",
+                DbType = DbType.Int32,
+                Value = AddressPlz,
             });
             cmd.Parameters.Add(new MySqlParameter
             {

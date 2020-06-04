@@ -6,40 +6,40 @@ namespace WebApiOAuth2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobsController : ControllerBase
+    public class MessagesController : ControllerBase
     {
         public AppDb Db { get; }
 
-        public JobsController(AppDb db)
+        public MessagesController(AppDb db)
         {
             Db = db;
         }
 
-        // GET api/job
+        // GET api/messages
         [HttpGet]
         public async Task<IActionResult> GetLatest()
         {
             await Db.Connection.OpenAsync();
-            var query = new JobQuery(Db);
+            var query = new MessageQuery(Db);
             var result = await query.LatestPostsAsync();
             return new OkObjectResult(result);
         }
 
-        // GET api/job/5
+        // GET api/messages/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOne(int id)
         {
             await Db.Connection.OpenAsync();
-            var query = new JobQuery(Db);
+            var query = new MessageQuery(Db);
             var result = await query.FindOneAsync(id);
             if (result is null)
                 return new NotFoundResult();
             return new OkObjectResult(result);
         }
 
-        // POST api/job
+        // POST api/messages
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Job body)
+        public async Task<IActionResult> Post([FromBody] Message body)
         {
             await Db.Connection.OpenAsync();
             body.Db = Db;
@@ -47,34 +47,29 @@ namespace WebApiOAuth2.Controllers
             return new OkObjectResult(body);
         }
 
-        // PUT api/job/5
+        // PUT api/messages/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOne(int id, [FromBody] Job body)
+        public async Task<IActionResult> PutOne(int id, [FromBody] Message body)
         {
             await Db.Connection.OpenAsync();
-            var query = new JobQuery(Db);
+            var query = new MessageQuery(Db);
             var result = await query.FindOneAsync(id);
             if (result is null)
                 return new NotFoundResult();
-            result.User = body.User;
-            result.Type = body.Type;
-            result.Title = body.Title;
-            result.Description = body.Description;
-            result.LocationLon = body.LocationLon;
-            result.LocationLat = body.LocationLat;
-            result.Date = body.Date;
-            result.Status = body.Status;
-            result.AcceptedBy = body.AcceptedBy;
+            result.ChatId = body.ChatId;
+            result.Content = body.Content;
+            result.Author = body.Author;
+            result.Receiver = body.Receiver;
             await result.UpdateAsync();
             return new OkObjectResult(result);
         }
 
-        // DELETE api/job/5
+        // DELETE api/messages/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOne(int id)
         {
             await Db.Connection.OpenAsync();
-            var query = new JobQuery(Db);
+            var query = new MessageQuery(Db);
             var result = await query.FindOneAsync(id);
             if (result is null)
                 return new NotFoundResult();
@@ -82,12 +77,12 @@ namespace WebApiOAuth2.Controllers
             return new OkResult();
         }
 
-        // DELETE api/job
+        // DELETE api/messages
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
             await Db.Connection.OpenAsync();
-            var query = new JobQuery(Db);
+            var query = new MessageQuery(Db);
             await query.DeleteAllAsync();
             return new OkResult();
         }
