@@ -32,7 +32,7 @@ namespace WebApiOAuth2.Models
         public async Task<List<Message>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `chat_id`, `content`, `author`, `receiver` ORDER BY `id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `id`, `chat_id`, `content`, `author`, `receiver` FROM `messages` ORDER BY `id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 

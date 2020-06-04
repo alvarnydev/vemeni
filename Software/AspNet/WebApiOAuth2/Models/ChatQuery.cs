@@ -18,7 +18,7 @@ namespace WebApiOAuth2.Models
         public async Task<Chat> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `user1`, `user2` FROM `chats` WHERE `id` = @id";
+            cmd.CommandText = @"SELECT `id`, `user1`, `user2` FROM `chats` WHERE `id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -32,7 +32,7 @@ namespace WebApiOAuth2.Models
         public async Task<List<Chat>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `user1`, `user2` ORDER BY `id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `id`, `user1`, `user2` FROM `chats` ORDER BY `id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 

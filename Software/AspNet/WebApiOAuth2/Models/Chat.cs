@@ -73,7 +73,7 @@ namespace WebApiOAuth2.Models
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@user2",
-                DbType = DbType.String,
+                DbType = DbType.Int32,
                 Value = User2,
             });
         }
