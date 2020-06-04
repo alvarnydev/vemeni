@@ -55,7 +55,7 @@ namespace WebApiOAuth2.Models
                     var post = new Message(Db)
                     {
                         Id = reader.GetInt32(0),
-                        ChatId = reader.GetInt32(1),
+                        Chat_Id = reader.GetInt32(1),
                         Content = reader.GetString(2),
                         Author = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
                         Receiver = reader.IsDBNull(4) ? 0 : reader.GetInt32(4)

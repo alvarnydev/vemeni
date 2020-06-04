@@ -56,7 +56,7 @@ namespace WebApiOAuth2.Controllers
             var result = await query.FindOneAsync(id);
             if (result is null)
                 return new NotFoundResult();
-            result.ChatId = body.ChatId;
+            result.Chat_Id = body.Chat_Id;
             result.Content = body.Content;
             result.Author = body.Author;
             result.Receiver = body.Receiver;
@@ -81,9 +81,11 @@ namespace WebApiOAuth2.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
+            /*
             await Db.Connection.OpenAsync();
-            var query = new MessageQuery(Db);
+            var query = new ChatQuery(Db);
             await query.DeleteAllAsync();
+            */
             return new OkResult();
         }
     }

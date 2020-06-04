@@ -18,9 +18,9 @@ namespace WebApiOAuth2.Models
 
         public DateTime Date { get; set; }
 
-        public int GivenBy { get; set; }
+        public int Given_By { get; set; }
 
-        public int JobId { get; set; }
+        public int Job_Id { get; set; }
 
 
         internal AppDb Db { get; set; }
@@ -93,20 +93,20 @@ namespace WebApiOAuth2.Models
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@date",
-                DbType = DbType.String,
+                DbType = DbType.DateTime,
                 Value = Date,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@given_by",
-                DbType = DbType.DateTime,
-                Value = GivenBy,
+                DbType = DbType.Int32,
+                Value = Given_By,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@job_id",
                 DbType = DbType.Int32,
-                Value = JobId,
+                Value = Job_Id,
             });
         }
 

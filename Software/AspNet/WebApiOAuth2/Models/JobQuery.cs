@@ -59,11 +59,11 @@ namespace WebApiOAuth2.Models
                         Type = reader.GetInt32(2),
                         Title = reader.GetString(3),
                         Description = reader.GetString(4),
-                        LocationLon = reader.GetDouble(5),
-                        LocationLat = reader.GetDouble(6),
+                        Location_Lon = reader.GetDouble(5),
+                        Location_Lat = reader.GetDouble(6),
                         Date = reader.GetDateTime(7),
                         Status = reader.GetInt32(8),
-                        AcceptedBy = reader.IsDBNull(9) ? 0 : reader.GetInt32(9)
+                        Accepted_By = reader.IsDBNull(9) ? 0 : reader.GetInt32(9)
                     };
                     posts.Add(post);
                 }

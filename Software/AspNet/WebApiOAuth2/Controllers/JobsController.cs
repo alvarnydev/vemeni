@@ -60,11 +60,11 @@ namespace WebApiOAuth2.Controllers
             result.Type = body.Type;
             result.Title = body.Title;
             result.Description = body.Description;
-            result.LocationLon = body.LocationLon;
-            result.LocationLat = body.LocationLat;
+            result.Location_Lon = body.Location_Lon;
+            result.Location_Lat = body.Location_Lat;
             result.Date = body.Date;
             result.Status = body.Status;
-            result.AcceptedBy = body.AcceptedBy;
+            result.Accepted_By = body.Accepted_By;
             await result.UpdateAsync();
             return new OkObjectResult(result);
         }
@@ -86,9 +86,11 @@ namespace WebApiOAuth2.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
+            /*
             await Db.Connection.OpenAsync();
-            var query = new JobQuery(Db);
+            var query = new ChatQuery(Db);
             await query.DeleteAllAsync();
+            */
             return new OkResult();
         }
     }

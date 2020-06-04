@@ -10,7 +10,7 @@ namespace WebApiOAuth2.Models
     {
         public int Id { get; set; }
 
-        public int ChatId { get; set; }
+        public int Chat_Id { get; set; }
 
         public string Content { get; set; }
 
@@ -72,7 +72,7 @@ namespace WebApiOAuth2.Models
             {
                 ParameterName = "@chat_id",
                 DbType = DbType.Int32,
-                Value = ChatId,
+                Value = Chat_Id,
             });
             cmd.Parameters.Add(new MySqlParameter
             {

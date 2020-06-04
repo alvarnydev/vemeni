@@ -18,15 +18,15 @@ namespace WebApiOAuth2.Models
 
         public string Description { get; set; }
 
-        public double LocationLon { get; set; }
+        public double Location_Lon { get; set; }
 
-        public double LocationLat { get; set; }
+        public double Location_Lat { get; set; }
 
         public DateTime Date { get; set; }
 
         public int Status { get; set; }
 
-        public int AcceptedBy { get; set; }
+        public int Accepted_By { get; set; }
 
 
         internal AppDb Db { get; set; }
@@ -106,13 +106,13 @@ namespace WebApiOAuth2.Models
             {
                 ParameterName = "@location_lon",
                 DbType = DbType.Double,
-                Value = LocationLon,
+                Value = Location_Lon,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@location_lat",
                 DbType = DbType.Double,
-                Value = LocationLat,
+                Value = Location_Lat,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
@@ -125,6 +125,12 @@ namespace WebApiOAuth2.Models
                 ParameterName = "@status",
                 DbType = DbType.Int32,
                 Value = Status,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@accepted_by",
+                DbType = DbType.Int32,
+                Value = Accepted_By,
             });
         }
     }

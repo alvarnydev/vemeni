@@ -79,10 +79,13 @@ namespace WebApiOAuth2.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
+            /*
             await Db.Connection.OpenAsync();
             var query = new ChatQuery(Db);
             await query.DeleteAllAsync();
+            */
             return new OkResult();
+            
         }
     }
 }

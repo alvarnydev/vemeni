@@ -59,10 +59,10 @@ namespace WebApiOAuth2.Controllers
             result.Username = body.Username;
             result.Phone = body.Phone;
             result.Email = body.Email;
-            result.AddressPlz = body.AddressPlz;
-            result.AddressCity = body.AddressCity;
-            result.AddressStreet = body.AddressStreet;
-            result.AddressStrnmbr = body.AddressStrnmbr;
+            result.Address_Plz = body.Address_Plz;
+            result.Address_City = body.Address_City;
+            result.Address_Street = body.Address_Street;
+            result.Address_Strnmbr = body.Address_Strnmbr;
             result.Img = body.Img;
             result.Lastvisit = body.Lastvisit;
             result.Created = body.Created;
@@ -87,9 +87,11 @@ namespace WebApiOAuth2.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
+            /*
             await Db.Connection.OpenAsync();
-            var query = new UserQuery(Db);
+            var query = new ChatQuery(Db);
             await query.DeleteAllAsync();
+            */
             return new OkResult();
         }
     }

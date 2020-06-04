@@ -59,8 +59,8 @@ namespace WebApiOAuth2.Models
                         RatingValue = reader.GetInt32(2),
                         Description = reader.GetString(3),
                         Date = reader.GetDateTime(4),
-                        GivenBy = reader.IsDBNull(5) ? 0 : reader.GetInt32(5),
-                        JobId = reader.GetInt32(6)
+                        Given_By = reader.IsDBNull(5) ? 0 : reader.GetInt32(5),
+                        Job_Id = reader.GetInt32(6)
                     };
                     posts.Add(post);
                 }

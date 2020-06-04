@@ -60,8 +60,8 @@ namespace WebApiOAuth2.Controllers
             result.RatingValue = body.RatingValue;
             result.Description = body.Description;
             result.Date = body.Date;
-            result.GivenBy = body.GivenBy;
-            result.JobId = body.JobId;
+            result.Given_By = body.Given_By;
+            result.Job_Id = body.Job_Id;
             await result.UpdateAsync();
             return new OkObjectResult(result);
         }
@@ -83,9 +83,11 @@ namespace WebApiOAuth2.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {
+            /*
             await Db.Connection.OpenAsync();
-            var query = new RatingQuery(Db);
+            var query = new ChatQuery(Db);
             await query.DeleteAllAsync();
+            */
             return new OkResult();
         }
     }
