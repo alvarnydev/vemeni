@@ -57,8 +57,8 @@ namespace WebApiOAuth2.Models
                         Id = reader.GetInt32(0),
                         ChatId = reader.GetInt32(1),
                         Content = reader.GetString(2),
-                        Author = reader.GetInt32(3),
-                        Receiver = reader.GetInt32(4)
+                        Author = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                        Receiver = reader.IsDBNull(4) ? 0 : reader.GetInt32(4)
                     };
                     posts.Add(post);
                 }

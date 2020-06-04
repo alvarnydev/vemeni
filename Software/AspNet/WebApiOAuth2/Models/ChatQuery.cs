@@ -55,8 +55,8 @@ namespace WebApiOAuth2.Models
                     var post = new Chat(Db)
                     {
                         Id = reader.GetInt32(0),
-                        User1 = reader.GetInt32(1),
-                        User2 = reader.GetInt32(2)
+                        User1 = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),
+                        User2 = reader.IsDBNull(2) ? 0 : reader.GetInt32(2)
                     };
                     posts.Add(post);
                 }

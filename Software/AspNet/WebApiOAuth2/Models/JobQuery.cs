@@ -18,7 +18,7 @@ namespace WebApiOAuth2.Models
         public async Task<Job> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status` FROM `jobs` WHERE `id` = @id";
+            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status`, `accepted_by` FROM `jobs` WHERE `id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -32,7 +32,7 @@ namespace WebApiOAuth2.Models
         public async Task<List<Job>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status` FROM `jobs` ORDER BY `id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status`, `accepted_by` FROM `jobs` ORDER BY `id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -63,7 +63,7 @@ namespace WebApiOAuth2.Models
                         LocationLat = reader.GetDouble(6),
                         Date = reader.GetDateTime(7),
                         Status = reader.GetInt32(8),
-                        AcceptedBy = reader.GetInt32(9)
+                        AcceptedBy = reader.IsDBNull(9) ? 0 : reader.GetInt32(9)
                     };
                     posts.Add(post);
                 }
