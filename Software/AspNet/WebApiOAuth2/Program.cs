@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+// TODO get all messages from and to one user, get all ratings given to a user
+
 namespace WebApiOAuth2
 {
     public class Program

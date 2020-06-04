@@ -6,19 +6,19 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
-    public class JobQuery
+    public class RatingQuery
     {
         public AppDb Db { get; }
 
-        public JobQuery(AppDb db)
+        public RatingQuery(AppDb db)
         {
             Db = db;
         }
 
-        public async Task<Job> FindOneAsync(int id)
+        public async Task<Rating> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `date`, `status` FROM `jobs` WHERE `id` = @id";
+            cmd.CommandText = @"SELECT `id`, `user`, `rating`, `description`, `date`, `given_by`, `job_id` FROM `ratings` WHERE `id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -29,10 +29,10 @@ namespace WebApiOAuth2.Models
             return result.Count > 0 ? result[0] : null;
         }
 
-        public async Task<List<Job>> LatestPostsAsync()
+        public async Task<List<Rating>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `date`, `status` FROM `jobs` ORDER BY `id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `id`, `user`, `rating`, `description`, `date`, `given_by`, `job_id` FROM `ratings` ORDER BY `id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -40,27 +40,27 @@ namespace WebApiOAuth2.Models
         {
             using var txn = await Db.Connection.BeginTransactionAsync();
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"DELETE FROM `jobs`";
+            cmd.CommandText = @"DELETE FROM `ratings`";
             await cmd.ExecuteNonQueryAsync();
             await txn.CommitAsync();
         }
 
-        private async Task<List<Job>> ReadAllAsync(DbDataReader reader)
+        private async Task<List<Rating>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<Job>();
+            var posts = new List<Rating>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var post = new Job(Db)
+                    var post = new Rating(Db)
                     {
                         Id = reader.GetInt32(0),
                         User = reader.GetInt32(1),
-                        Type = reader.GetInt32(2),
-                        Title = reader.GetString(3),
-                        Description = reader.GetString(4),
-                        Date = reader.GetDateTime(5),
-                        Status = reader.GetInt32(6)
+                        RatingValue = reader.GetInt32(2),
+                        Description = reader.GetString(3),
+                        Date = reader.GetDateTime(4),
+                        GivenBy = reader.GetInt32(5),
+                        JobId = reader.GetInt32(6)
                     };
                     posts.Add(post);
                 }
