@@ -39,9 +39,14 @@ namespace Vemini
             }
         }
 
-        private void Button_OnClickedPwVerg(object sender, EventArgs e)
+        private void Button_OnClickedGoogleLogin(object sender, EventArgs e)
         {
-            //Rücksetzen per Email Versendung?
+            Button btncontrol = (Button) sender;
+            string providername = btncontrol.Text;
+            if (/*OAuthConfig.User == null*/true)
+            {
+                Navigation.PushModalAsync(new LoginProviderPage(providername));
+            }
         }
 
         private async void Button_OnClickedRegist(object sender, EventArgs e)

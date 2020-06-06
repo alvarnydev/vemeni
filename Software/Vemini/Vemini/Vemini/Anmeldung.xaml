@@ -72,9 +72,9 @@
                         
                         ></Button>
                 <Button BackgroundColor="White"
-                        Text="Passwort vergessen"
+                        Text="Mit Google anmelden"
                         TextColor="CornflowerBlue"
-                        Clicked="Button_OnClickedPwVerg"
+                        Clicked="Button_OnClickedGoogleLogin"
                 ></Button>
                 <Button BackgroundColor="White"
                         Text="Registrieren"

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vemini.Registrierung">
     <ContentPage.Content>
-        <StackLayout Padding="0,30,0,0" BackgroundColor="CornflowerBlue">
+        <StackLayout Padding="0,20,0,0" BackgroundColor="CornflowerBlue">
             <Label Text="Registrierung"
                    x:Name="Reglabel"
                    TextColor="White"
