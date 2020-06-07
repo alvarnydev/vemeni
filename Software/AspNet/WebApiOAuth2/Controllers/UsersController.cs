@@ -59,10 +59,10 @@ namespace WebApiOAuth2.Controllers
             result.Username = body.Username;
             result.Phone = body.Phone;
             result.Email = body.Email;
-            result.Address_Plz = body.Address_Plz;
-            result.Address_City = body.Address_City;
-            result.Address_Street = body.Address_Street;
-            result.Address_Strnmbr = body.Address_Strnmbr;
+            result.Address_plz = body.Address_plz;
+            result.Address_city = body.Address_city;
+            result.Address_street = body.Address_street;
+            result.Address_strnmbr = body.Address_strnmbr;
             result.Img = body.Img;
             result.Lastvisit = body.Lastvisit;
             result.Created = body.Created;

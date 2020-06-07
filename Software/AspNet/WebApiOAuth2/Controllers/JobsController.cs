@@ -60,11 +60,11 @@ namespace WebApiOAuth2.Controllers
             result.Type = body.Type;
             result.Title = body.Title;
             result.Description = body.Description;
-            result.Location_Lon = body.Location_Lon;
-            result.Location_Lat = body.Location_Lat;
+            result.Location_lon = body.Location_lon;
+            result.Location_lat = body.Location_lat;
             result.Date = body.Date;
             result.Status = body.Status;
-            result.Accepted_By = body.Accepted_By;
+            result.Accepted_by = body.Accepted_by;
             await result.UpdateAsync();
             return new OkObjectResult(result);
         }

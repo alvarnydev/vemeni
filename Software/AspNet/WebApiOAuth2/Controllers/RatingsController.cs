@@ -60,8 +60,8 @@ namespace WebApiOAuth2.Controllers
             result.RatingValue = body.RatingValue;
             result.Description = body.Description;
             result.Date = body.Date;
-            result.Given_By = body.Given_By;
-            result.Job_Id = body.Job_Id;
+            result.Given_by = body.Given_by;
+            result.Job_id = body.Job_id;
             await result.UpdateAsync();
             return new OkObjectResult(result);
         }

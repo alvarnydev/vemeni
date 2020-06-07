@@ -6,15 +6,21 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
+
+    // Class that manages how select queries to the 'messages' table are performed
     public class MessageQuery
     {
+
+        // Reference to database
         public AppDb Db { get; }
 
+        // Constructor
         public MessageQuery(AppDb db)
         {
             Db = db;
         }
 
+        // SQl Select command: Select one by id
         public async Task<Message> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -29,6 +35,7 @@ namespace WebApiOAuth2.Models
             return result.Count > 0 ? result[0] : null;
         }
 
+        // SQl Select command: Select latest 10 entries by id
         public async Task<List<Message>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -36,6 +43,7 @@ namespace WebApiOAuth2.Models
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
+        // SQl Delete command: Delete all
         public async Task DeleteAllAsync()
         {
             using var txn = await Db.Connection.BeginTransactionAsync();
@@ -45,14 +53,15 @@ namespace WebApiOAuth2.Models
             await txn.CommitAsync();
         }
 
+        // Database reader method to retrieve properties
         private async Task<List<Message>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<Message>();
+            var messages = new List<Message>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var post = new Message(Db)
+                    var message = new Message(Db)
                     {
                         Id = reader.GetInt32(0),
                         Chat_Id = reader.GetInt32(1),
@@ -60,10 +69,10 @@ namespace WebApiOAuth2.Models
                         Author = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
                         Receiver = reader.IsDBNull(4) ? 0 : reader.GetInt32(4)
                     };
-                    posts.Add(post);
+                    messages.Add(message);
                 }
             }
-            return posts;
+            return messages;
         }
     }
 }

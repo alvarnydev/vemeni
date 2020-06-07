@@ -6,15 +6,21 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
+
+    // Class that manages how select queries to the 'chats' table are performed
     public class ChatQuery
     {
+
+        // Reference to database
         public AppDb Db { get; }
 
+        // Constructor
         public ChatQuery(AppDb db)
         {
             Db = db;
         }
 
+        // SQl Select command: Select one by id
         public async Task<Chat> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -29,6 +35,7 @@ namespace WebApiOAuth2.Models
             return result.Count > 0 ? result[0] : null;
         }
 
+        // SQl Select command: Select latest 10 entries by id
         public async Task<List<Chat>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -36,6 +43,7 @@ namespace WebApiOAuth2.Models
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
+        // SQl Delete command: Delete all
         public async Task DeleteAllAsync()
         {
             using var txn = await Db.Connection.BeginTransactionAsync();
@@ -45,23 +53,24 @@ namespace WebApiOAuth2.Models
             await txn.CommitAsync();
         }
 
+        // Database reader method to retrieve properties
         private async Task<List<Chat>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<Chat>();
+            var chats = new List<Chat>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var post = new Chat(Db)
+                    var chat = new Chat(Db)
                     {
                         Id = reader.GetInt32(0),
                         User1 = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),
                         User2 = reader.IsDBNull(2) ? 0 : reader.GetInt32(2)
                     };
-                    posts.Add(post);
+                    chats.Add(chat);
                 }
             }
-            return posts;
+            return chats;
         }
     }
 }

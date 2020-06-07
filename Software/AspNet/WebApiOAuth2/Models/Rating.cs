@@ -6,34 +6,35 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
+
+    // Rating class that represents 'ratings' table
     public class Rating
     {
+
+        // Properties to reflect database entries
         public int Id { get; set; }
-
         public int User { get; set; }
-
         public int RatingValue { get; set; }
-
         public string Description { get; set; }
-
         public DateTime Date { get; set; }
+        public int Given_by { get; set; }
+        public int Job_id { get; set; }
 
-        public int Given_By { get; set; }
-
-        public int Job_Id { get; set; }
-
-
+        // Reference to database
         internal AppDb Db { get; set; }
 
+        // Constructor
         public Rating()
         {
         }
 
+        // Overloaded constructor
         internal Rating(AppDb db)
         {
             Db = db;
         }
 
+        // SQL Insert command
         public async Task InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -43,6 +44,7 @@ namespace WebApiOAuth2.Models
             Id = (int)cmd.LastInsertedId;
         }
 
+        // SQL Update command
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -52,6 +54,7 @@ namespace WebApiOAuth2.Models
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // SQL Delete command
         public async Task DeleteAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -60,6 +63,7 @@ namespace WebApiOAuth2.Models
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // Bind id to correctly reference primary key
         private void BindId(MySqlCommand cmd)
         {
             cmd.Parameters.Add(new MySqlParameter
@@ -70,6 +74,7 @@ namespace WebApiOAuth2.Models
             });
         }
 
+        // Bind parameter to correctly reference sql parameter
         private void BindParams(MySqlCommand cmd)
         {
             cmd.Parameters.Add(new MySqlParameter
@@ -100,13 +105,13 @@ namespace WebApiOAuth2.Models
             {
                 ParameterName = "@given_by",
                 DbType = DbType.Int32,
-                Value = Given_By,
+                Value = Given_by,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@job_id",
                 DbType = DbType.Int32,
-                Value = Job_Id,
+                Value = Job_id,
             });
         }
 

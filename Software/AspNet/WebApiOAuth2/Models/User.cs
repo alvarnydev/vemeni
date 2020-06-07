@@ -7,42 +7,39 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
+
+    // User class that represents 'users' table
     public class User
     {
+
+        // Properties to reflect database entries
         public int Id { get; set; }
-
         public string Username { get; set; }
-
         public string Phone { get; set; }
-
         public string Email { get; set; }
-
-        public int Address_Plz { get; set; }
-
-        public string Address_City { get; set; }
-
-        public string Address_Street { get; set; }
-
-        public int Address_Strnmbr { get; set; }
-
+        public int Address_plz { get; set; }
+        public string Address_city { get; set; }
+        public string Address_street { get; set; }
+        public int Address_strnmbr { get; set; }
         public string Img { get; set; }
-
         public DateTime Lastvisit { get; set; }
-
         public DateTime Created { get; set; }
 
-
+        // Reference to database
         internal AppDb Db { get; set; }
 
+        // Constructor
         public User()
         {
         }
 
+        // Overloaded constructor
         internal User(AppDb db)
         {
             Db = db;
         }
 
+        // SQL Insert command
         public async Task InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -52,6 +49,7 @@ namespace WebApiOAuth2.Models
             Id = (int)cmd.LastInsertedId;
         }
 
+        // SQL Update command
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -61,6 +59,7 @@ namespace WebApiOAuth2.Models
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // SQL Delete command
         public async Task DeleteAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -69,6 +68,7 @@ namespace WebApiOAuth2.Models
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // Bind id to correctly reference primary key
         private void BindId(MySqlCommand cmd)
         {
             cmd.Parameters.Add(new MySqlParameter
@@ -79,6 +79,7 @@ namespace WebApiOAuth2.Models
             });
         }
 
+        // Bind parameter to correctly reference sql parameter
         private void BindParams(MySqlCommand cmd)
         {
             cmd.Parameters.Add(new MySqlParameter
@@ -103,25 +104,25 @@ namespace WebApiOAuth2.Models
             {
                 ParameterName = "@address_plz",
                 DbType = DbType.Int32,
-                Value = Address_Plz,
+                Value = Address_plz,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@address_city",
                 DbType = DbType.String,
-                Value = Address_City,
+                Value = Address_city,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@address_street",
                 DbType = DbType.String,
-                Value = Address_Street,
+                Value = Address_street,
             });
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@address_strnmbr",
                 DbType = DbType.Int32,
-                Value = Address_Strnmbr,
+                Value = Address_strnmbr,
             });
             cmd.Parameters.Add(new MySqlParameter
             {

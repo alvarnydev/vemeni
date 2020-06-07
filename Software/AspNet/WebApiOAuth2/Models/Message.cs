@@ -6,30 +6,32 @@ using MySql.Data.MySqlClient;
 
 namespace WebApiOAuth2.Models
 {
+    // Message class that represents 'messages' table
     public class Message
     {
+
+        // Properties to reflect database entries
         public int Id { get; set; }
-
         public int Chat_Id { get; set; }
-
         public string Content { get; set; }
-
         public int Author { get; set; }
-
         public int Receiver { get; set; }
 
-
+        // Reference to database
         internal AppDb Db { get; set; }
 
+        // Constructor
         public Message()
         {
         }
 
+        // Overloaded constructor
         internal Message(AppDb db)
         {
             Db = db;
         }
 
+        // SQL Insert command
         public async Task InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -39,6 +41,7 @@ namespace WebApiOAuth2.Models
             Id = (int)cmd.LastInsertedId;
         }
 
+        // SQL Update command
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -48,6 +51,7 @@ namespace WebApiOAuth2.Models
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // SQL Delete command
         public async Task DeleteAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
@@ -56,6 +60,7 @@ namespace WebApiOAuth2.Models
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // Bind id to correctly reference primary key
         private void BindId(MySqlCommand cmd)
         {
             cmd.Parameters.Add(new MySqlParameter
@@ -66,6 +71,7 @@ namespace WebApiOAuth2.Models
             });
         }
 
+        // Bind parameter to correctly reference sql parameter
         private void BindParams(MySqlCommand cmd)
         {
             cmd.Parameters.Add(new MySqlParameter
