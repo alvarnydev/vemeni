@@ -17,10 +17,10 @@ namespace Vemini
             get;
             set;
         }
-        public LoginProviderPage(string _providername)
+        public LoginProviderPage()
         {
             InitializeComponent();
-            ProviderName = _providername;
+           
         }
     }
 }

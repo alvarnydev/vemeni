@@ -70,7 +70,11 @@
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.847" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomUrlSchemeInterceptorActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PageRenderer\LoginRenderer.xaml.cs">
+      <DependentUpon>LoginRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,6 +113,11 @@
       <Project>{6327F445-CBD5-4D59-A1D2-EAE3D3C080D6}</Project>
       <Name>Vemini</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PageRenderer\LoginRenderer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
