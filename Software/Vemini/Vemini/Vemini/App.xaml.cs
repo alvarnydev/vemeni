@@ -31,6 +31,9 @@ namespace Vemini
         protected override void OnResume()
         {
             // Handle when your app resumes
+            base.OnResume();
+
+           // Xamarin.Essentials.Platform.OnResume();
         }
     }
 }

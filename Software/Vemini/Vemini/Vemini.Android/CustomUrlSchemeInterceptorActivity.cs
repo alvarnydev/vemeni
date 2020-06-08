@@ -13,6 +13,7 @@ using Android.Widget;
 using Android.Content.PM;
 using Vemin;
 
+//Webauthentifactor
 
 namespace Vemini.Droid
 {
@@ -23,6 +24,7 @@ namespace Vemini.Droid
         new[] { Intent.ActionView },
 
         Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        //CALLBACK Scheme?
         DataSchemes = new[] { "com.googleusercontent.apps.1074178032762-37ega4jph0edpbfg45uph0t94nmqho26" },
 
         DataPath = "/oauth2redirect")]

@@ -38,7 +38,7 @@ namespace Vemini
             if (getEmail() == "" || getEmail() == null || getPassword() == "" || getPassword() == null) DisplayAlert("Warnung", "Emailadresse und/oder Passwort ungueltig", "ok");
         }
 
-        private void Button_OnClickedGoogleLogin(object sender, EventArgs e)
+        private async void Button_OnClickedGoogleLogin(object sender, EventArgs e)
         {
             string clientId = null;
             string redirectUri = null;
@@ -69,14 +69,15 @@ namespace Vemini
                 null,
                 true);
 
+           
+
             authenticator.Completed += OnAuthCompleted;
             authenticator.Error += OnAuthError;
 
             AuthenticationState.Authenticator = authenticator;
 
 
-
-            var presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
+            var presenter = new OAuthLoginPresenter();
             presenter.Login(authenticator);
         }
 
