@@ -189,7 +189,11 @@ namespace Vemini
                         var userJson = await response.GetResponseTextAsync();
                         user = JsonConvert.DeserializeObject<User>(userJson);
                    }
-                    if (account != null) store.Delete(account, Constants.AppName);
+
+                   if (account != null)
+                   {
+                       store.Delete(account, Constants.AppName);
+                   }
 
                     await store.SaveAsync(account = e.Account, Constants.AppName);
 
@@ -206,6 +210,7 @@ namespace Vemini
                     Application.Current.Properties.Add("DisplayName", user.Name);
                     Application.Current.Properties.Add("EmailAddress", user.Email);
                     Application.Current.Properties.Add("ProfilePicture", user.Picture);
+
 
                     await Navigation.PushAsync(new ProfilePage());
                 }

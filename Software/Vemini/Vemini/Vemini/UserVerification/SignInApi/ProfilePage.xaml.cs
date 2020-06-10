@@ -56,5 +56,10 @@ namespace Vemini
                 lblEmailAddressValue.Text = lblEmailAddressValue.Text + Application.Current.Properties["EmailAddress"].ToString();
 
         }
+
+        private async void Button_OnClickedSignOut(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Anmeldung());
+        }
     }
 }

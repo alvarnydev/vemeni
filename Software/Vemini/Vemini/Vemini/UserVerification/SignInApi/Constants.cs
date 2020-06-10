@@ -46,6 +46,6 @@ namespace Vemini
 
         // Where  User gets redirected to after loggin in 
         public static string FacebookiOSRedirectUrl = "<insert IOS redirect URL here>:/oauth2redirect";
-        public static string FacebookAndroidRedirectUrl = "https://www.facebook.com/connect/login_success.html";
+        public static string FacebookAndroidRedirectUrl = "636575123871898://authorize";
     }
 }

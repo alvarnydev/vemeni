@@ -21,7 +21,8 @@
             <Label></Label>
             <Label x:Name="lblEmailAddressValue" FontSize="Large" Text="Email Address : "/>
             <Label></Label>
-            <Button Text="Sign Out"></Button>
+            <Button Text="Sign Out" 
+                    Clicked="Button_OnClickedSignOut" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
