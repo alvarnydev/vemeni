@@ -1,5 +1,4 @@
-## web app
-Webseite ist in neuen Branch **webapp**
+## Start-Nachricht
 
 Hallo zusammen,
 
@@ -11,3 +10,12 @@ Der Ordner ../Software ist für Ihr Source Code und sonstigen SW-Artifakte vorge
 
 Viel Erfolg
 Mohammad Abuosba
+
+
+## API
+API-Entwicklung ist im Branch **backend** in dem Ordner Software/AspNet/WebApiOAuth2
+
+## Web App
+Webseite ist in neuen Branch **webapp**
+
+
