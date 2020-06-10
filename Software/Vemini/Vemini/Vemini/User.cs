@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
+/*
+ * Author: Benedikt Blank with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
+ * Implemented: 04.06.20
+ * Userdata from Google Api 
+ *
+ */
+
 namespace Vemini
 {
     class User

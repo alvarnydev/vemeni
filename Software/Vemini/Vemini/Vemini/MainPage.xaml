@@ -5,6 +5,12 @@
              x:Class="Vemini.MainPage"
              >
 
+    <!--
+    * Author: Benedikt Blank
+    * Implemented: 26.05.20
+    * Welcome page, before getting through clicking on a button to the login page 
+    *
+    -->
 
     <StackLayout BackgroundColor="CornflowerBlue">
         <!-- Place new controls here -->

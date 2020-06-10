@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+/*
+ * Author: Benedikt Blank with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
+ * Implemented: 04.06.20
+ * Example display page of gathered User data from api
+ *
+ */
 namespace Vemini
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]

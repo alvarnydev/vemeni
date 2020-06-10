@@ -7,10 +7,12 @@ namespace Vemini
 {
     public partial class App : Application
     {
+        //Starting Point
         public App()
         {
             InitializeComponent();
 
+            //Navigation kind of page
             MainPage = new NavigationPage(new MainPage())
             {
                 BarBackgroundColor = Color.CornflowerBlue

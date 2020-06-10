@@ -3,13 +3,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json;
-using OAuthNativeFlow;
 using Vemin;
 using Xamarin.Auth;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+/*
+ * Author: Benedikt Blank with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
+ * Implemented: 04.06.20
+ * Login page for User where he can login/register with his/her facebook/google account
+ *
+ */
 namespace Vemini
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -24,22 +29,25 @@ namespace Vemini
             store = AccountStore.Create();
         }
 
+        //retrieve Email from Textbox
         public string getEmail()
         {
             return email_entry.Text;
         }
 
+        //retrieve Passwort from Textbox
         public string getPassword()
         {
             return password_entry.Text;
         }
 
+        //Gets redirected to the facebook api where he can login to his/her account 
         private void Button_OnClickedFacebook(object sender, EventArgs e)
         {
-            //if (getEmail() == "" || getEmail() == null || getPassword() == "" || getPassword() == null) DisplayAlert("Warnung", "Emailadresse und/oder Passwort ungueltig", "ok");
             string clientId = null;
             string redirectUri = null;
 
+            //clientId and redirectId depending on OS
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -54,7 +62,8 @@ namespace Vemini
             }
 
             account = store.FindAccountsForService(Constants.AppName).FirstOrDefault();
-
+            
+            //Authenticator for getting the access token for oauth
             var authenticator = new OAuth2Authenticator(
                 clientId,
                 Constants.FacebookScope,
@@ -67,6 +76,7 @@ namespace Vemini
 
             AuthenticationState.Authenticator = authenticator;
 
+            //Opens up facebook login page
             var presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
             presenter.Login(authenticator);
         }
@@ -76,7 +86,7 @@ namespace Vemini
             string clientId = null;
             string redirectUri = null;
 
-            //Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;            
+            //clientId and redirectId depending on OS        
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -92,6 +102,7 @@ namespace Vemini
 
             account = store.FindAccountsForService(Constants.AppName).FirstOrDefault();
 
+            //Authenticator for getting the access token for oauth
             var authenticator = new OAuth2Authenticator(
                 clientId,
                 null,
@@ -102,14 +113,12 @@ namespace Vemini
                 null,
                 true);
 
-           
-
             authenticator.Completed += OnAuthCompleted;
             authenticator.Error += OnAuthError;
 
             AuthenticationState.Authenticator = authenticator;
 
-
+            //Opens up facebook login page
             var presenter = new OAuthLoginPresenter();
             presenter.Login(authenticator);
         }
@@ -120,6 +129,7 @@ namespace Vemini
             await Navigation.PushAsync(new Registrierung());
         }
 
+        //If oauth access was granted Properties from the facebook/google -account get retrieved
         [Obsolete]
         async void OnAuthCompleted(object sender, AuthenticatorCompletedEventArgs e)
         {
@@ -134,6 +144,7 @@ namespace Vemini
             User user = null;
             if (e.IsAuthenticated){
 
+                //Different for facebook, otherwise for google
                 if (authenticator.AuthorizeUrl.Host == "www.facebook.com")
                 {
                     FacebookEmail facebookEmail = null;
@@ -162,6 +173,7 @@ namespace Vemini
 
                     await Navigation.PushAsync(new ProfilePage());
                 }
+                //google
                 else 
                 {
                     // If the user is authenticated, request their basic user data from Google
@@ -200,6 +212,7 @@ namespace Vemini
             }
         }
 
+        //If error with oauth occurs
         [Obsolete]
         private void OnAuthError(object sender, AuthenticatorErrorEventArgs e)
         {
@@ -209,7 +222,6 @@ namespace Vemini
                 authenticator.Completed -= OnAuthCompleted;
                 authenticator.Error -= OnAuthError;
             }
-
             Debug.WriteLine("Authentication error: " + e.Message);
         }
     }

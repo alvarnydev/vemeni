@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OAuthNativeFlow
+/*
+ * Author: Benedikt Blank with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
+ * Implemented: 04.06.20
+ * Userdata from Facebook Api 
+ *
+ */
+namespace Vemini
 {
     public class FacebookEmail
     {

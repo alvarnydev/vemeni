@@ -13,7 +13,13 @@ using Android.Widget;
 using Android.Content.PM;
 using Vemin;
 
-//Webauthentifactor
+/*Webauthentifactor
+ * 
+ * Author: Benedikt Blank (with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow)
+ * Implemented: 08.06.2020
+ * Starts new Intent for Google/Facebook Sign In
+ *
+ * */
 
 namespace Vemini.Droid
 {

@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:widget="clr-namespace:Android.Widget;assembly=Mono.Android"
              x:Class="Vemini.Anmeldung">
+
+    <!--
+    * Author: Benedikt Blank 
+    * Implemented: 26.05.20
+    * Login page for User where he can login/register with his/her facebook/google account 
+    *
+    -->
     <ContentPage.Content>
         <RelativeLayout BackgroundColor="CornflowerBlue">
             <Label Text="Anmeldung"
@@ -85,21 +92,6 @@
                         TextColor="CornflowerBlue"
                         Clicked="Button_OnClickedRegist"
                 ></Button>
-               <!-- RelativeLayout.YConstraint="{
-                ConstraintExpression 
-                Type=RelativeToParent, 
-                Property=Height, 
-                Factor=0.8}"
-                RelativeLayout.XConstraint="{
-                ConstraintExpression
-                Type=RelativeToParent,
-                Property=Width,
-                Factor=0.1415}"
-                RelativeLayout.WidthConstraint="{
-                ConstraintExpression 
-                Type=RelativeToParent, 
-                Property=Width, 
-                Factor=0.8}"-->
             </StackLayout>
         </RelativeLayout>
     </ContentPage.Content>

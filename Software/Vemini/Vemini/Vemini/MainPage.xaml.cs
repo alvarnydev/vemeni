@@ -14,7 +14,7 @@ namespace Vemini
             InitializeComponent();
             
         }
-        
+        //Redirecting to login page 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
           await Navigation.PushAsync(new Anmeldung());

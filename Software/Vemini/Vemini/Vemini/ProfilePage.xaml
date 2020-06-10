@@ -2,6 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vemini.ProfilePage">
+
+    <!--
+    * Author: Benedikt Blank with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
+    * Implemented: 04.06.20
+    * Example Display Page for gathered data of logged in User
+    *
+    -->
     <ContentPage.Content>
         <StackLayout>
             <Image x:Name="imgProfilePicture" Source="ProfilePicture.png"></Image>
