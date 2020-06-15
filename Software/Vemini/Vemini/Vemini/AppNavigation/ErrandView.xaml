@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vemini.AppNavigation.ErrandView">
+   
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Text="+"
+                     Order="Primary"
+                     Clicked="MenuItem_OnClickedPlus"
+        ></ToolbarItem>
+        <ToolbarItem Text="Konto"
+                     Order="Primary">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            
+            <!--LISTVIEW einbauen-->
+           <BoxView></BoxView>
+            <Label Text="Hier soll die Karte hin, Wajdi!"
+                   TextColor ="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+            <BoxView></BoxView>
+            <ScrollView Orientation="Vertical">
+                <StackLayout BackgroundColor="CornflowerBlue"
+                         Padding="10,10,10,10">
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+                    <BoxView BackgroundColor="White">
+                    </BoxView>
+                    <BoxView BackgroundColor=" Gray"></BoxView>
+            </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
