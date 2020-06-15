@@ -16,9 +16,9 @@ using Xamarin.Forms.Xaml;
  */
 namespace Vemini
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProfilePage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ProfilePage : ContentPage
+    {
         public ProfilePage()
 
         {
@@ -55,11 +55,24 @@ namespace Vemini
 
                 lblEmailAddressValue.Text = lblEmailAddressValue.Text + Application.Current.Properties["EmailAddress"].ToString();
 
+
+            saveBtn.IsVisible = false;
         }
 
         private async void Button_OnClickedSignOut(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Anmeldung());
+        }
+
+        private async void Button_OnClickedSave(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Anmeldung());
+        }
+
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            saveBtn.IsVisible = true;
+            saveBtn.IsEnabled = true;
         }
     }
 }
