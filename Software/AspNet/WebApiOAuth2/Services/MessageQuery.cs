@@ -3,8 +3,9 @@ using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WebApiOAuth2.Models;
 
-namespace WebApiOAuth2.Models
+namespace WebApiOAuth2.Services
 {
 
     // Class that manages how select queries to the 'messages' table are performed

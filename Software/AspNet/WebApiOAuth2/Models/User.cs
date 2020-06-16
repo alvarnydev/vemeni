@@ -2,6 +2,7 @@
 using System.Data;
 using System.Reflection.PortableExecutable;
 using System.Security.Cryptography;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
@@ -24,6 +25,9 @@ namespace WebApiOAuth2.Models
         public string Img { get; set; }
         public DateTime Lastvisit { get; set; }
         public DateTime Created { get; set; }
+
+        [JsonIgnore]
+        public string Password { get; set; }
 
         // Reference to database
         internal AppDb Db { get; set; }

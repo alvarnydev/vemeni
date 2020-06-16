@@ -3,28 +3,29 @@ using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WebApiOAuth2.Models;
 
-namespace WebApiOAuth2.Models
+namespace WebApiOAuth2.Services
 {
 
-    // Class that manages how select queries to the 'jobs' table are performed
-    public class JobQuery
+    // Class that manages how select queries to the 'ratings' table are performed
+    public class RatingQuery
     {
 
         // Reference to database
         public AppDb Db { get; }
 
         // Constructor
-        public JobQuery(AppDb db)
+        public RatingQuery(AppDb db)
         {
             Db = db;
         }
 
         // SQl Select command: Select one by id
-        public async Task<Job> FindOneAsync(int id)
+        public async Task<Rating> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status`, `accepted_by` FROM `jobs` WHERE `id` = @id";
+            cmd.CommandText = @"SELECT `id`, `user`, `rating`, `description`, `date`, `given_by`, `job_id` FROM `ratings` WHERE `id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -36,10 +37,10 @@ namespace WebApiOAuth2.Models
         }
 
         // SQl Select command: Select latest 10 entries by id
-        public async Task<List<Job>> LatestPostsAsync()
+        public async Task<List<Rating>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `id`, `user`, `type`, `title`, `description`, `location_lon`, `location_lat`, `date`, `status`, `accepted_by` FROM `jobs` ORDER BY `id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `id`, `user`, `rating`, `description`, `date`, `given_by`, `job_id` FROM `ratings` ORDER BY `id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -48,36 +49,33 @@ namespace WebApiOAuth2.Models
         {
             using var txn = await Db.Connection.BeginTransactionAsync();
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"DELETE FROM `jobs`";
+            cmd.CommandText = @"DELETE FROM `ratings`";
             await cmd.ExecuteNonQueryAsync();
             await txn.CommitAsync();
         }
 
         // Database reader method to retrieve properties
-        private async Task<List<Job>> ReadAllAsync(DbDataReader reader)
+        private async Task<List<Rating>> ReadAllAsync(DbDataReader reader)
         {
-            var jobs = new List<Job>();
+            var ratings = new List<Rating>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var job = new Job(Db)
+                    var rating = new Rating(Db)
                     {
                         Id = reader.GetInt32(0),
                         User = reader.GetInt32(1),
-                        Type = reader.GetInt32(2),
-                        Title = reader.GetString(3),
-                        Description = reader.GetString(4),
-                        Location_lon = reader.GetDouble(5),
-                        Location_lat = reader.GetDouble(6),
-                        Date = reader.GetDateTime(7),
-                        Status = reader.GetInt32(8),
-                        Accepted_by = reader.IsDBNull(9) ? 0 : reader.GetInt32(9)
+                        RatingValue = reader.GetInt32(2),
+                        Description = reader.GetString(3),
+                        Date = reader.GetDateTime(4),
+                        Given_by = reader.IsDBNull(5) ? 0 : reader.GetInt32(5),
+                        Job_id = reader.GetInt32(6)
                     };
-                    jobs.Add(job);
+                    ratings.Add(rating);
                 }
             }
-            return jobs;
+            return ratings;
         }
     }
 }
