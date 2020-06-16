@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApiOAuth2.Models;
+using WebApiOAuth2.Services;
 
 namespace WebApiOAuth2.Controllers
 {
