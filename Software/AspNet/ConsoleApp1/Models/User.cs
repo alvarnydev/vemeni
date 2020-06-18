@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebApiToken.Models
+namespace ConsoleApp1.Models
 {
-    public class UserModel
+    public class User
     {
 
         public int Id { get; set; }
         public string Username { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
+        public byte[] Password { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public int AddressPlz { get; set; }

@@ -1,11 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using WebApiToken.Entities;
 using WebApiToken.Helpers;
+using WebApiToken.Models;
+using WebApiToken.Services;
 
 namespace WebApiToken.Controllers
 {
@@ -14,46 +24,68 @@ namespace WebApiToken.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly DataContext _context;
 
-        public UsersController(DataContext context)
+        private IUserService _userService;
+        private readonly DataContext _context;
+        private IMapper _mapper;
+        private ApiSettings _apiSettings;
+
+        // Constructor
+        public UsersController(DataContext context, IMapper mapper, IUserService userService, IOptions<ApiSettings> apiSettings)
         {
+            _mapper = mapper;
+            _userService = userService;
             _context = context;
+            _apiSettings = apiSettings.Value;
         }
+
+
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        public async Task<ActionResult<IEnumerable<UserModel>>> GetUser()
         {
-            return await _context.Users.ToListAsync();
+
+            // Get users
+            var users = await _userService.GetAll();
+
+            // Map to model
+            var userModels = _mapper.Map<List<UserModel>>(users);
+
+            // Return model
+            return userModels;
+
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<UserModel>> GetUser(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            // Get user
+            var user = await _userService.GetById(id);
 
-            if (users == null)
+            // Map user
+            var userModel = _mapper.Map<UserModel>(user);
+
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return users;
+            // Return model
+            return userModel;
         }
 
         // PUT: api/User/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User users)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != users.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -74,32 +106,102 @@ namespace WebApiToken.Controllers
             return NoContent();
         }
 
-        // POST: api/User
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User users)
+        // Post: api/users/authenticate
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate([FromBody] LoginModel model)
         {
-            _context.Users.Add(users);
+            
+            // Try to authenticate user
+            var user = _userService.Authenticate(model.Username, model.Password);
+
+            // If unsuccessful, return BadRequest
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            /*
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_apiSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+            */
+
+            // Return basic user info and authentication token
+            return Ok(new
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname
+                //Token = tokenString
+            });
+        }
+
+
+        // POST: api/users/register
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> RegisterUser([FromBody] RegisterModel model)
+        {
+
+            // Map model back to user
+            //var user = _mapper.Map<User>(model);
+            var user = new User
+            {
+                Username = model.Username,
+                Email = model.Email,
+                Firstname = model.FirstName,
+                Lastname = model.LastName
+            };
+
+            // Try to create user
+            try
+            {
+
+                // Create user
+                _userService.Create(user, model.Password);
+                return Ok();
+
+            }
+            catch (ApiException ex)
+            {
+
+                // Return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+
+            }
+
+            /*
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = users.Id }, users);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            */
         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return users;
+            return user;
         }
 
         private bool UserExists(int id)

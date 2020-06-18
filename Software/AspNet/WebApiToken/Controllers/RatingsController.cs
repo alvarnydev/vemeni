@@ -43,8 +43,6 @@ namespace WebApiToken.Controllers
         }
 
         // PUT: api/Ratings/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRatings(int id, Rating ratings)
         {
@@ -75,8 +73,6 @@ namespace WebApiToken.Controllers
         }
 
         // POST: api/Ratings
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Rating>> PostRatings(Rating ratings)
         {

@@ -251,8 +251,12 @@ namespace WebApiToken.Helpers
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("password")
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
+                    .HasColumnType("varbinary(50)");
+
+                entity.Property(e => e.PasswordSalt)
+                    .IsRequired()
+                    .HasColumnName("passwordSalt")
+                    .HasColumnType("varbinary(50)");
 
                 entity.Property(e => e.Phone)
                     .IsRequired()
