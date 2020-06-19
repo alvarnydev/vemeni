@@ -140,6 +140,7 @@ namespace WebApiToken.Controllers
             {
                 Id = user.Id,
                 Username = user.Username,
+                Email = user.Email,
                 Firstname = user.Firstname,
                 Lastname = user.Lastname
                 //Token = tokenString

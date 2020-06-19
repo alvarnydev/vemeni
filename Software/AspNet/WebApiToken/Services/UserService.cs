@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MySql.Data.EntityFrameworkCore.Storage.Internal;
 using WebApiToken.Entities;
 using WebApiToken.Helpers;
 
@@ -58,7 +56,7 @@ namespace WebApiToken.Services
                 return null;
 
             // Try to find user
-            var user = _context.Users.SingleOrDefault(x => x.Username == username);
+            var user = _context.Users.SingleOrDefault(u => u.Username == username);
 
             // Check if username exists
             if (user == null)

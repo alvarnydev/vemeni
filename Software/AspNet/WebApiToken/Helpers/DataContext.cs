@@ -205,22 +205,18 @@ namespace WebApiToken.Helpers
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.AddressCity)
-                    .IsRequired()
                     .HasColumnName("address_city")
                     .HasMaxLength(45)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("'TBD'");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.AddressPlz)
                     .HasColumnName("address_plz")
                     .HasColumnType("int(8)");
 
                 entity.Property(e => e.AddressStreet)
-                    .IsRequired()
                     .HasColumnName("address_street")
                     .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("'TBD'");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.AddressStrnmbr)
                     .HasColumnName("address_strnmbr")
@@ -237,11 +233,9 @@ namespace WebApiToken.Helpers
                     .IsUnicode(false);
 
                 entity.Property(e => e.Img)
-                    .IsRequired()
                     .HasColumnName("img")
                     .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("'0'");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Lastvisit)
                     .HasColumnName("lastvisit")
@@ -251,15 +245,14 @@ namespace WebApiToken.Helpers
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("password")
-                    .HasColumnType("varbinary(50)");
+                    .HasColumnType("varbinary(64)");
 
                 entity.Property(e => e.PasswordSalt)
                     .IsRequired()
                     .HasColumnName("passwordSalt")
-                    .HasColumnType("varbinary(50)");
+                    .HasColumnType("varbinary(128)");
 
                 entity.Property(e => e.Phone)
-                    .IsRequired()
                     .HasColumnName("phone")
                     .HasMaxLength(45)
                     .IsUnicode(false);
