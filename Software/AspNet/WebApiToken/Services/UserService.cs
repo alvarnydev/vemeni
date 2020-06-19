@@ -11,10 +11,10 @@ namespace WebApiToken.Services
 
     public interface IUserService
     {
-        User Authenticate(string username, string password);
+        Task<User> Authenticate(string username, string password);
         Task<List<User>> GetAll();
         Task<User> GetById(int id);
-        User Create(User user, string password);
+        Task<User> Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
     }
@@ -34,9 +34,9 @@ namespace WebApiToken.Services
 
 
         // Return all users
-        public Task<List<User>> GetAll()
+        public async Task<List<User>> GetAll()
         {
-            return _context.Users.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
         // Return one user
@@ -48,7 +48,7 @@ namespace WebApiToken.Services
 
 
         // Authenticate user
-        public User Authenticate(string username, string password)
+        public async Task<User> Authenticate(string username, string password)
         {
 
             // Catch empty parameter
@@ -56,7 +56,7 @@ namespace WebApiToken.Services
                 return null;
 
             // Try to find user
-            var user = _context.Users.SingleOrDefault(u => u.Username == username);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
 
             // Check if username exists
             if (user == null)
@@ -73,7 +73,7 @@ namespace WebApiToken.Services
 
 
         // Create a user
-        public User Create(User user, string password)
+        public async Task<User> Create(User user, string password)
         {
 
             // Validate input
@@ -81,7 +81,7 @@ namespace WebApiToken.Services
                 throw new ApiException("Password is required");
 
             // Check if already exists
-            if (_context.Users.Any(x => x.Username == user.Username))
+            if (await _context.Users.AnyAsync(x => x.Username == user.Username))
                 throw new ApiException("Username \"" + user.Username + "\" is already taken");
 
             // Create password hash and salt
@@ -93,8 +93,8 @@ namespace WebApiToken.Services
             user.PasswordSalt = passwordSalt;
 
             // Add user account to database
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
 
             return user;
 

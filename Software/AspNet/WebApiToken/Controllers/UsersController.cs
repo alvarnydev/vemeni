@@ -76,44 +76,15 @@ namespace WebApiToken.Controllers
             return userModel;
         }
 
-        // PUT: api/User/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // Post: api/users/authenticate
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] LoginModel model)
+        public async Task<ActionResult> Authenticate([FromBody] LoginModel model)
         {
             
             // Try to authenticate user
-            var user = _userService.Authenticate(model.Username, model.Password);
+            var user = await _userService.Authenticate(model.Username, model.Password);
 
             // If unsuccessful, return BadRequest
             if (user == null)
@@ -169,24 +140,51 @@ namespace WebApiToken.Controllers
             {
 
                 // Create user
-                _userService.Create(user, model.Password);
-                return Ok();
+                await _userService.Create(user, model.Password);
+                return Ok(new
+                {
+                    message = $"Successfully registered new user {user.Username}"
+                });
 
             }
             catch (ApiException ex)
             {
 
                 // Return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new {message = ex.Message});
 
             }
+        }
 
-            /*
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
-            */
+        // PUT: api/User/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUser(int id, User user)
+        {
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
         // DELETE: api/User/5
