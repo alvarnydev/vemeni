@@ -47,17 +47,12 @@ namespace Vemini.Services
 
         public async void UpdateUser()
         {
-            User u = new User("4","d.sawckin@yandex.ru","Dmitry Savkin", "", "","Berlin","10000", "Strasse", "","");
+            UserRefactored u = new UserRefactored(4, "uoeaz@student.kit.edu", "33443", "Dmitry Savkin", "", "Karlsruhe", 76137, "Werderstr", 2, "2020-06-01T13:49:01", "2020-06-01T13:49:01");
             string url = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/4";
             var client = new HttpClient();
             var s = new JsonSerializerSettings { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat };
             var json = JsonConvert.SerializeObject(u,s);
-            Console.WriteLine(json);
-            /* var content = new StringContent(json, Encoding.UTF8, "application/json");
-             var response =  await client.PutAsync(url, content);
-         */
-            string jsonstr = @"{""id"":4,""username"":""Dmitry Savkin"",""phone"":""1111111"",""email"":""dsawckin@yandex.ru"",""address_plz"":0,""address_city"":""Kalrsruhe"",""address_street"":""TBD"",""address_strnmbr"":0,""img"":""0"",""lastvisit"":""2020-06-15T17:51:05"",""created"":""2020-06-01T13:49:01""}";
-            var content = new StringContent(jsonstr, Encoding.UTF8, "application/json");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PutAsync(url, content);
             Console.WriteLine("Result " + response);
             Console.WriteLine("");
