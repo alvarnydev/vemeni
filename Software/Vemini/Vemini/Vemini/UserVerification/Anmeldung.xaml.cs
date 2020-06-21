@@ -200,14 +200,12 @@ namespace Vemini
                     Application.Current.Properties.Remove("Id");
                     Application.Current.Properties.Remove("FirstName");
                     Application.Current.Properties.Remove("LastName");
-                    Application.Current.Properties.Remove("DisplayName");
+                    Application.Current.Properties.Remove("UserName");
                     Application.Current.Properties.Remove("EmailAddress");
                     Application.Current.Properties.Remove("ProfilePicture");
 
                     Application.Current.Properties.Add("Id", user.Id);
-                    Application.Current.Properties.Add("FirstName", user.GivenName);
-                    Application.Current.Properties.Add("LastName", user.FamilyName);
-                    Application.Current.Properties.Add("DisplayName", user.Name);
+                    Application.Current.Properties.Add("UserName", user.UserName);
                     Application.Current.Properties.Add("EmailAddress", user.Email);
                     Application.Current.Properties.Add("ProfilePicture", user.Picture);
 
