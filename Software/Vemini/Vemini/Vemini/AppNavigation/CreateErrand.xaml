@@ -10,7 +10,7 @@
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"
                />
-            <!--<ScrollView>-->
+            <ScrollView>
                 <StackLayout>
                     <Label Text="Lieferadresse" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="10,20,0,10"></Label>
                     <Grid  Padding="10,10,0,0">
@@ -43,9 +43,9 @@
 
                             <Label Text=" Auftragsdetails" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="0,20,0,0"></Label>
                         </StackLayout>
-                        <StackLayout Grid.Row="2" Grid.Column="0">
+                        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                             <Picker x:Name="category_pick" Title="Kategorie" TitleColor="White" BackgroundColor="CornflowerBlue"  
-                                    HorizontalOptions="FillAndExpand" Margin="0,20,0,0">
+                                    HorizontalOptions="FillAndExpand" Margin="0,20,90,0">
                              <Picker.Items>
                                 <x:String>Supermarkt</x:String>
                                  <x:String>Baumarkt</x:String>
@@ -55,13 +55,14 @@
                             </Picker.Items>
                             </Picker>
                         </StackLayout>
-                        <StackLayout Grid.Row="3" Grid.Column="0">
-                            <Label Text="Bevorzugtes Geschäft" TextColor="White" Margin="5,30,10,-15"></Label>
-                            <Entry  x:Name="Shop_Entry" Placeholder="Optional" PlaceholderColor="LightGray" FontSize="Medium"></Entry>
-                        </StackLayout>
                     <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label Text="Bevorzugtes Geschäft" TextColor="White" Margin="5,13,10,-15"></Label>
+                            <Entry  x:Name="Shop_Entry" Placeholder="Optional" PlaceholderColor="LightGray" 
+                                    FontSize="Medium" Margin="0,0,90,0"></Entry>
+                        </StackLayout>
+                    <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                         <Picker x:Name="urgency_pick" Title="Dringlichkeit" TitleColor="White" BackgroundColor="CornflowerBlue"  
-                                HorizontalOptions="FillAndExpand" Margin="0,20,0,0">
+                                HorizontalOptions="FillAndExpand" Margin="0,20,90,0">
                             <Picker.Items>
                                 <x:String>Sofort</x:String>
                                 <x:String>In den nächsten Stunden</x:String>
@@ -80,8 +81,8 @@
                             <CheckBox Margin="-10,23,0,0" Color="White"></CheckBox>
                         </StackLayout>
                     <StackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                                <Label Text="Notizen" TextColor="White" Margin="10,30,0,-15"></Label>
-                                <Editor BackgroundColor="White" Margin="10,30,0,10" Placeholder="Beschreibung, Einkaufsliste, etc..." 
+                                <Label Text="Notizen" TextColor="White" Margin="10,0,0,-15"></Label>
+                                <Editor BackgroundColor="White" Margin="10,20,20,0" Placeholder="Beschreibung, Einkaufsliste, etc..." 
                                         PlaceholderColor="LightGray" FontSize="Medium" AutoSize="TextChanges"
                                         HeightRequest="200">
                                 </Editor>
@@ -93,7 +94,7 @@
                         ></Button>
                     </Grid>
                 </StackLayout>
-            <!--</ScrollView>--> 
+            </ScrollView> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

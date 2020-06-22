@@ -72,13 +72,17 @@
                     Type=RelativeToParent, 
                     Property=Width, 
                     Factor=0.745}">
+                <Button BackgroundColor="White"
+                        Text="Anmelden"
+                        TextColor="CornflowerBlue"
+                        Clicked="Button_OnClickedAnmelden"
+                ></Button>
                 <Button BackgroundColor="DarkBlue"
                         Text="Facebook SignIn"
                         TextColor="White"
                         Image="facebook_icon.jpg"
                         Clicked="Button_OnClickedFacebook"
-                        
-                        ></Button>
+                ></Button>
                 <Button BackgroundColor="White"
                         Image="google_icon_resized.png"
                         HeightRequest="45"

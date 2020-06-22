@@ -39,17 +39,9 @@ namespace Vemini
 
 
 
-            if (Application.Current.Properties["FirstName"] != null)
+            if (Application.Current.Properties["UserName"] != null)
 
-                lblFirstNameValue.Text = lblFirstNameValue.Text + Application.Current.Properties["FirstName"].ToString();
-
-
-
-            if (Application.Current.Properties["LastName"] != null)
-
-                lblLastNameValue.Text = lblLastNameValue.Text + Application.Current.Properties["LastName"].ToString();
-
-
+                lblFirstNameValue.Text = lblFirstNameValue.Text + Application.Current.Properties["UserName"].ToString();
 
             if (Application.Current.Properties["EmailAddress"] != null)
 
@@ -66,6 +58,8 @@ namespace Vemini
 
         private async void Button_OnClickedSave(object sender, EventArgs e)
         {
+            Services.UserService s = new Services.UserService();
+            s.UpdateUser();
             await Navigation.PushAsync(new Anmeldung());
         }
 
