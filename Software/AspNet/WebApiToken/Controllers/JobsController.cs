@@ -33,15 +33,14 @@ namespace WebApiToken.Controllers
         [HttpGet("city/{city}")]
         public async Task<ActionResult<IEnumerable<Job>>> GetJobsInCity(string city)
         {
-            string cityUpper = city.ToUpper();
 
             var jobs = await _context.Jobs
                 //.FromSqlRaw($"SELECT * FROM Jobs j INNER JOIN Users u ON j.user = u.id WHERE u.address_city = \"{cityUpper}\"")
                 //.FromSqlRaw("SELECT * FROM Jobs j INNER JOIN Users u ON j.user = u.id WHERE u.address_city = \"Berlin\"")
-                .FromSqlRaw($"SELECT j.* FROM Jobs j, Users u WHERE j.user = u.id AND u.address_city = \"{city}\" AND j.status = 0")
+                .FromSqlRaw($"SELECT j.* FROM jobs j, users u WHERE j.user = u.id AND u.address_city = \"{city}\" AND j.status = 0")
                 .ToListAsync();
 
-            if (jobs == null)
+            if (jobs == null || jobs.Count == 0)
             {
                 return NotFound();
             }
@@ -54,10 +53,10 @@ namespace WebApiToken.Controllers
         {
 
             var jobs = await _context.Jobs
-                .FromSqlRaw($"SELECT * FROM Jobs WHERE user = {id}")
+                .FromSqlRaw($"SELECT * FROM jobs WHERE user = {id}")
                 .ToListAsync();
 
-            if (jobs == null)
+            if (jobs == null || jobs.Count == 0)
             {
                 return NotFound();
             }

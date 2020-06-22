@@ -49,10 +49,10 @@ namespace WebApiToken.Controllers
         {
 
             var messages = await _context.Messages
-                .FromSqlRaw($"SELECT * FROM Messages WHERE chat_id = {id}")
+                .FromSqlRaw($"SELECT * FROM messages WHERE chat_id = {id}")
                 .ToListAsync();
 
-            if (messages == null)
+            if (messages == null || messages.Count == 0)
             {
                 return NotFound();
             }

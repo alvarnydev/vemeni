@@ -49,10 +49,10 @@ namespace WebApiToken.Controllers
         {
 
             var ratings = await _context.Ratings
-                .FromSqlRaw($"SELECT * FROM Ratings WHERE user = {id}")
+                .FromSqlRaw($"SELECT * FROM ratings WHERE user = {id}")
                 .ToListAsync();
 
-            if (ratings == null)
+            if (ratings == null || ratings.Count == 0)
             {
                 return NotFound();
             }
