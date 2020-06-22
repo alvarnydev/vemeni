@@ -16,7 +16,7 @@ namespace Vemini
     class UserRefactored
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("email")]
         public string Email { get; set; }
@@ -26,22 +26,17 @@ namespace Vemini
         [JsonProperty("username")]
         public string UserName { get; set; }
 
-
-        [JsonProperty("link")]
-        public string Link { get; set; }
-
-        [JsonProperty("picture")]
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+      
+        [JsonProperty("img")]
         public string Picture { get; set; }
-
-
-
-
 
         [JsonProperty("address_city")]
         public string City { get; set; }
 
         [JsonProperty("address_plz")]
-        public string PLZ { get; set; }
+        public int PLZ { get; set; }
 
         [JsonProperty("address_street")]
         public string Street { get; set; }
@@ -52,21 +47,24 @@ namespace Vemini
         [JsonProperty("created")]
         public string  Created { get; set; }
 
+        [JsonProperty("address_strnmbr")]
+        public int Strnmbr { get; set; }
 
         public UserRefactored() { }
 
-        public UserRefactored(string id, string email, string userName, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
+        public UserRefactored(int id, string email, string userName, string phone, string picture, string city, int pLZ, string street, int strnmbr, string lastVisit, string created)
         {
             Id = id;
             Email = email;
             UserName = userName;
-            Link = link;
             Picture = picture;
             City = city;
+            Phone = phone;
             PLZ = pLZ;
             Street = street;
             LastVisit = lastVisit;
             Created = created;
+            Strnmbr = strnmbr;
         }
 
         public override string ToString()
