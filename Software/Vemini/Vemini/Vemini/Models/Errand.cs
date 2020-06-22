@@ -8,13 +8,13 @@ namespace Vemini.Models
     public class Errand
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("user")]
-        public string User { get; set; }
+        public int User { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; } 
+        public int Type { get; set; } 
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -23,18 +23,18 @@ namespace Vemini.Models
         public string Description { get; set; }
 
         [JsonProperty("location_lon")]
-        public string Location_lon { get; set; }
+        public double Location_lon { get; set; }
 
         [JsonProperty("location_lat")]
-        public string location_lat { get; set; }
+        public double location_lat { get; set; }
 
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         [JsonProperty("status")]
-        public string Status { get; set; }
+        public int Status { get; set; }
 
         [JsonProperty("accepted_by")]
-        public string Acceptedd_by { get; set; }
+        public int Accepted_by { get; set; }
     }
 }

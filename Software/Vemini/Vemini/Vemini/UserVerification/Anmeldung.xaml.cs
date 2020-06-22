@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using Android.Widget;
 using Newtonsoft.Json;
 using Vemin;
 using Vemini.AppNavigation;
@@ -232,7 +233,7 @@ namespace Vemini
 
         private void Button_OnClickedAnmelden(object sender, EventArgs e)
         {
-           
+           TestCaseClass.testAddErrand();
         }
     }
 }
