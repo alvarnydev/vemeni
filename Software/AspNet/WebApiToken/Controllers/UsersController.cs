@@ -31,7 +31,8 @@ namespace WebApiToken.Controllers
         private ApiSettings _apiSettings;
 
         // Constructor
-        public UsersController(DataContext context, IMapper mapper, IUserService userService, IOptions<ApiSettings> apiSettings)
+        public UsersController(DataContext context, IMapper mapper, IUserService userService,
+            IOptions<ApiSettings> apiSettings)
         {
             _mapper = mapper;
             _userService = userService;
@@ -40,12 +41,13 @@ namespace WebApiToken.Controllers
         }
 
 
-
         // GET: api/User
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserModel>>> GetUser()
         {
 
+            return NotFound();
+            /*
             // Get users
             var users = await _userService.GetAll();
 
@@ -54,18 +56,39 @@ namespace WebApiToken.Controllers
 
             // Return model
             return userModels;
+            */
+            // TODO: allow for admins
 
+        }
+
+        // POST: api/User
+        [HttpPost]
+        public async Task<ActionResult<UserModel>> GetUserProfile([FromBody] ProfileQueryModel model)
+        {
+            // Get user
+            var user = await _userService.GetById(model.Id);
+
+            // Map user
+            var userModel = _mapper.Map<UserModel>(user);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Return model
+            return userModel;
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserModel>> GetUser(int id)
+        public async Task<ActionResult<UserPublicModel>> GetUserPublic(int id)
         {
             // Get user
             var user = await _userService.GetById(id);
 
             // Map user
-            var userModel = _mapper.Map<UserModel>(user);
+            var userModel = _mapper.Map<UserPublicModel>(user);
 
             if (user == null)
             {

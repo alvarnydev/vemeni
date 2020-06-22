@@ -25,7 +25,8 @@ namespace WebApiToken.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rating>>> GetRatings()
         {
-            return await _context.Ratings.ToListAsync();
+            return NotFound();
+            // return await _context.Ratings.ToListAsync(); TODO: allow for admins
         }
 
         // GET: api/Ratings/5
@@ -39,6 +40,22 @@ namespace WebApiToken.Controllers
                 return NotFound();
             }
 
+            return ratings;
+        }
+
+        // GET: api/Ratings/user/5
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Rating>>> GetRatingsToUserId(int id)
+        {
+
+            var ratings = await _context.Ratings
+                .FromSqlRaw($"SELECT * FROM Ratings WHERE user = {id}")
+                .ToListAsync();
+
+            if (ratings == null)
+            {
+                return NotFound();
+            }
             return ratings;
         }
 

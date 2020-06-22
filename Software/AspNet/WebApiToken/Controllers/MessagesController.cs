@@ -25,7 +25,8 @@ namespace WebApiToken.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessages()
         {
-            return await _context.Messages.ToListAsync();
+            return NotFound();
+            // return await _context.Messages.ToListAsync(); TODO: allow for admins
         }
 
         // GET: api/Messages/5
@@ -39,6 +40,22 @@ namespace WebApiToken.Controllers
                 return NotFound();
             }
 
+            return messages;
+        }
+
+        // GET: api/Messages/chat/5
+        [HttpGet("chat/{id}")]
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessagesToChatId(int id)
+        {
+
+            var messages = await _context.Messages
+                .FromSqlRaw($"SELECT * FROM Messages WHERE chat_id = {id}")
+                .ToListAsync();
+
+            if (messages == null)
+            {
+                return NotFound();
+            }
             return messages;
         }
 

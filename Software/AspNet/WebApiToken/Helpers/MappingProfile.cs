@@ -15,6 +15,7 @@ namespace WebApiToken.Helpers
             CreateMap<User, UserModel>();
             CreateMap<RegisterModel, User>();
             CreateMap<UpdateModel, User>();
+            CreateMap<User, UserPublicModel>();
 
         }
 

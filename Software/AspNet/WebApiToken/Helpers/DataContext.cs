@@ -59,6 +59,8 @@ namespace WebApiToken.Helpers
             {
                 entity.ToTable("jobs");
 
+                //entity.HasOne(e => e.User);
+
                 entity.HasIndex(e => e.AcceptedBy)
                     .HasName("accepted_by");
 

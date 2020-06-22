@@ -21,14 +21,15 @@ namespace WebApiToken.Controllers
             _context = context;
         }
 
-        // GET: api/Chat
+        // GET: api/Chats
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Chat>>> GetChat()
         {
-            return await _context.Chats.ToListAsync();
+            return NotFound();
+            // return await _context.Chats.ToListAsync(); TODO: allow for admins
         }
 
-        // GET: api/Chat/5
+        // GET: api/Chats/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Chat>> GetChat(int id)
         {
@@ -42,7 +43,23 @@ namespace WebApiToken.Controllers
             return chats;
         }
 
-        // PUT: api/Chat/5
+        // GET: api/Chats/user/5
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Chat>>> GetChatsToUserId(int id)
+        {
+
+            var chats = await _context.Chats
+                .FromSqlRaw($"SELECT * FROM Chats WHERE user1 = {id} OR user2 = {id}")
+                .ToListAsync();
+
+            if (chats == null)
+            {
+                return NotFound();
+            }
+            return chats;
+        }
+
+        // PUT: api/Chats/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChat(int id, Chat chats)
         {
@@ -72,7 +89,7 @@ namespace WebApiToken.Controllers
             return NoContent();
         }
 
-        // POST: api/Chat
+        // POST: api/Chats
         [HttpPost]
         public async Task<ActionResult<Chat>> PostChat(Chat chats)
         {
@@ -82,7 +99,7 @@ namespace WebApiToken.Controllers
             return CreatedAtAction("GetChat", new { id = chats.Id }, chats);
         }
 
-        // DELETE: api/Chat/5
+        // DELETE: api/Chats/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Chat>> DeleteChat(int id)
         {

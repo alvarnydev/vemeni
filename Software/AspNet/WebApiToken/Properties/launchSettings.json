@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/users",
+      "launchUrl": "api/jobs/city/berlin",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "WebApiToken": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/users",
+      "launchUrl": "api/jobs/city/berlin",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

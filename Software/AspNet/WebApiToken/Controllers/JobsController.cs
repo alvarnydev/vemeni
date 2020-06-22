@@ -25,7 +25,43 @@ namespace WebApiToken.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
         {
-            return await _context.Jobs.ToListAsync();
+            return NotFound();
+            //return await _context.Jobs.ToListAsync(); TODO: allow for admins
+        }
+
+        // GET: api/Jobs/city/berlin
+        [HttpGet("city/{city}")]
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobsInCity(string city)
+        {
+            string cityUpper = city.ToUpper();
+
+            var jobs = await _context.Jobs
+                //.FromSqlRaw($"SELECT * FROM Jobs j INNER JOIN Users u ON j.user = u.id WHERE u.address_city = \"{cityUpper}\"")
+                //.FromSqlRaw("SELECT * FROM Jobs j INNER JOIN Users u ON j.user = u.id WHERE u.address_city = \"Berlin\"")
+                .FromSqlRaw($"SELECT j.* FROM Jobs j, Users u WHERE j.user = u.id AND u.address_city = \"{city}\" AND j.status = 0")
+                .ToListAsync();
+
+            if (jobs == null)
+            {
+                return NotFound();
+            }
+            return jobs;
+        }
+
+        // GET: api/Jobs/user/5
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobsToUserId(int id)
+        {
+
+            var jobs = await _context.Jobs
+                .FromSqlRaw($"SELECT * FROM Jobs WHERE user = {id}")
+                .ToListAsync();
+
+            if (jobs == null)
+            {
+                return NotFound();
+            }
+            return jobs;
         }
 
         // GET: api/Jobs/5
