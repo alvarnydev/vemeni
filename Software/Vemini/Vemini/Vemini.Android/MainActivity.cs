@@ -23,5 +23,11 @@ namespace Vemini.Droid
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            
+            return base.OnOptionsItemSelected(item);
+        }
     }
 }

@@ -13,7 +13,6 @@
     -->
 
     <StackLayout BackgroundColor="CornflowerBlue">
-        <!-- Place new controls here -->
         <Label Text="Willkommen bei VergissMeinNicht!"
                TextColor="White"
                FontSize="26"
@@ -21,7 +20,7 @@
                HorizontalTextAlignment="Center"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand" 
-               />
+        />
         
         <Button BackgroundColor="White" 
                 Text="     Los geht's!    "

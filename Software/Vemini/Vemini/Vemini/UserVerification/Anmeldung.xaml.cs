@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Vemin;
+using Vemini.AppNavigation;
 using Xamarin.Auth;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
@@ -171,7 +172,7 @@ namespace Vemini
                     Application.Current.Properties.Add("EmailAddress", facebookEmail.Email);
                     Application.Current.Properties.Add("ProfilePicture", facebookEmail.Picture.Data.Url);
 
-                    await Navigation.PushAsync(new ProfilePage());
+                    await Navigation.PushAsync(new ErrandView());
                 }
                 //google
                 else 
@@ -210,7 +211,8 @@ namespace Vemini
                     Application.Current.Properties.Add("ProfilePicture", user.Picture);
 
 
-                    await Navigation.PushAsync(new ProfilePage());
+                    await Navigation.PushAsync(new ErrandView());
+                   
                 }
             }
         }
@@ -226,6 +228,11 @@ namespace Vemini
                 authenticator.Error -= OnAuthError;
             }
             Debug.WriteLine("Authentication error: " + e.Message);
+        }
+
+        private void Button_OnClickedAnmelden(object sender, EventArgs e)
+        {
+           
         }
     }
 }
