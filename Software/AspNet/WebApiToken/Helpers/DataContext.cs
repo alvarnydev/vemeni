@@ -213,7 +213,8 @@ namespace WebApiToken.Helpers
 
                 entity.Property(e => e.AddressPlz)
                     .HasColumnName("address_plz")
-                    .HasColumnType("int(8)");
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.AddressStreet)
                     .HasColumnName("address_street")
@@ -222,7 +223,8 @@ namespace WebApiToken.Helpers
 
                 entity.Property(e => e.AddressStrnmbr)
                     .HasColumnName("address_strnmbr")
-                    .HasColumnType("int(10)");
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Created)
                     .HasColumnName("created")

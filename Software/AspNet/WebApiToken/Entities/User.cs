@@ -14,10 +14,10 @@ namespace WebApiToken.Entities
         public string Email { get; set; }
 #nullable enable
         public string? Phone { get; set; }
-        public int? AddressPlz { get; set; }
+        public string? AddressPlz { get; set; }
         public string? AddressCity { get; set; }
         public string? AddressStreet { get; set; }
-        public int? AddressStrnmbr { get; set; }
+        public string? AddressStrnmbr { get; set; }
         public string? Img { get; set; }
         public DateTime? Lastvisit { get; set; }
 #nullable disable
