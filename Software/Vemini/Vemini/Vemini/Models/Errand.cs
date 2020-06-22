@@ -14,7 +14,7 @@ namespace Vemini.Models
         public string User { get; set; }
 
         [JsonProperty("type")]
-        public bool Type { get; set; } 
+        public string Type { get; set; } 
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -26,13 +26,13 @@ namespace Vemini.Models
         public string Location_lon { get; set; }
 
         [JsonProperty("location_lat")]
-        public bool location_lat { get; set; }
+        public string location_lat { get; set; }
 
         [JsonProperty("date")]
         public string Date { get; set; }
 
         [JsonProperty("status")]
-        public bool Status { get; set; }
+        public string Status { get; set; }
 
         [JsonProperty("accepted_by")]
         public string Acceptedd_by { get; set; }
