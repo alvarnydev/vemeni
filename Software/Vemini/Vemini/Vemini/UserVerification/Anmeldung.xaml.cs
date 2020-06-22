@@ -231,5 +231,10 @@ namespace Vemini
             }
             Debug.WriteLine("Authentication error: " + e.Message);
         }
+
+        private void Button_OnClickedAnmelden(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

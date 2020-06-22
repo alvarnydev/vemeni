@@ -16,15 +16,17 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             
-            <!--LISTVIEW einbauen-->
-           <BoxView></BoxView>
+           <!--Hier die Karte-->
+           <BoxView HeightRequest="100"></BoxView>
             <Label Text="Hier soll die Karte hin, Wajdi!"
                    TextColor ="Black"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    />
-            <BoxView></BoxView>
-            <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <BoxView HeightRequest="100" ></BoxView>
+           <!--Bis hier-->
+            <!--LISTVIEW einbauen-->
+            <!--<ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">-->
                 <StackLayout BackgroundColor="CornflowerBlue"
                              Padding="10,10,10,10">
                     <BoxView BackgroundColor="White">
@@ -49,7 +51,7 @@
                     </BoxView>
                     <BoxView BackgroundColor=" Gray"></BoxView>
             </StackLayout>
-            </ScrollView> 
+            <!--</ScrollView>--> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
