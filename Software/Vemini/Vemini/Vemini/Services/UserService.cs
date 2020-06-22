@@ -31,7 +31,7 @@ namespace Vemini.Services
                 Application.Current.Properties.Add("Id", user.Id);
                 Application.Current.Properties.Add("FirstName", user.GivenName);
                 Application.Current.Properties.Add("LastName", user.FamilyName);
-                Application.Current.Properties.Add("DisplayName", user.Name);
+                Application.Current.Properties.Add("DisplayName", user.UserName);
                 Application.Current.Properties.Add("EmailAddress", user.Email);
                 Application.Current.Properties.Add("ProfilePicture", user.Picture);
             }
