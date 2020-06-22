@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace Vemini
 {
-    class User
+    class UserRefactored
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -53,9 +53,9 @@ namespace Vemini
         public string  Created { get; set; }
 
 
-        public User() { }
+        public UserRefactored() { }
 
-        public User(string id, string email, string userName, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
+        public UserRefactored(string id, string email, string userName, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
         {
             Id = id;
             Email = email;
