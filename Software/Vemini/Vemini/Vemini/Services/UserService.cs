@@ -21,7 +21,7 @@ namespace Vemini.Services
         public async void GetUserInfoById(int id)
         {
 
-            string url = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/" + id;
+            string url = $"{Constants.VeminiUsersUrl}/{id}";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var client = new HttpClient();
             var response = client.SendAsync(request).Result;
@@ -48,7 +48,7 @@ namespace Vemini.Services
         public async void UpdateUser()
         {
             UserRefactored u = new UserRefactored(4, "uoeaz@student.kit.edu",  "Dmitry Savkin", "35434","", "Karlsruhe",76545, "Werderstr", 3,"2020-06-01T13:49:01", "2020-06-01T13:49:01");
-            string url = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/4";
+            string url = $"{Constants.VeminiUsersUrl}/4";
             var client = new HttpClient();
             var s = new JsonSerializerSettings { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat };
             var json = JsonConvert.SerializeObject(u,s);
