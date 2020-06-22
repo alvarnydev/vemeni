@@ -47,7 +47,7 @@ namespace Vemini.Services
 
         public async void UpdateUser()
         {
-            UserRefactored u = new UserRefactored(4, "uoeaz@student.kit.edu", "33443", "Dmitry Savkin", "", "Karlsruhe", 76137, "Werderstr", 2, "2020-06-01T13:49:01", "2020-06-01T13:49:01");
+            UserRefactored u = new UserRefactored("4", "uoeaz@student.kit.edu", "33443", "Dmitry Savkin", "", "Karlsruhe", "76543", "Werderstr", "2020-06-01T13:49:01", "2020-06-01T13:49:01");
             string url = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/4";
             var client = new HttpClient();
             var s = new JsonSerializerSettings { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat };
