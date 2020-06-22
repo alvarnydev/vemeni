@@ -13,9 +13,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Vemini.Services
 {
-    public class Service
+    public class UserService
     {
-        public Service()
+        public UserService()
         {
         }
         public async void GetUserInfoById(int id)

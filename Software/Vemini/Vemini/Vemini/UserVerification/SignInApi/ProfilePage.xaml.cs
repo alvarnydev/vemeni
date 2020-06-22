@@ -58,7 +58,7 @@ namespace Vemini
 
         private async void Button_OnClickedSave(object sender, EventArgs e)
         {
-            Services.Service s = new Services.Service();
+            Services.UserService s = new Services.UserService();
             s.UpdateUser();
             await Navigation.PushAsync(new Anmeldung());
         }
