@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vemini.AppNavigation;
 using Xamarin.Forms;
 
 namespace Vemini
@@ -17,7 +18,7 @@ namespace Vemini
         //Redirecting to login page 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-          await Navigation.PushAsync(new Anmeldung());
+          await Navigation.PushAsync(new ErrandView());
         }
     }
 }

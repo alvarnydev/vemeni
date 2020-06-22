@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vemini.AppNavigation.ErrandView">
+             x:Class="Vemini.AppNavigation.ErrandView"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
    
     <ContentPage.ToolbarItems >
-        <ToolbarItem Text="+"
+        <ToolbarItem Text="+" 
                      Order="Primary"
                      Clicked="MenuItem_OnClickedPlus"
         ></ToolbarItem>
@@ -17,14 +18,11 @@
         <StackLayout BackgroundColor="White">
             
             <!--LISTVIEW einbauen-->
-           <BoxView></BoxView>
-            <Label Text="Hier soll die Karte hin, Wajdi!"
-                   TextColor ="Black"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   />
-            <BoxView></BoxView>
-            <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <maps:Map VerticalOptions="FillAndExpand" IsShowingUser="True" IsEnabled="True" MapType="Street" >
+                
+            </maps:Map>
+            
+            <!--<ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
                 <StackLayout BackgroundColor="CornflowerBlue"
                              Padding="10,10,10,10">
                     <BoxView BackgroundColor="White">
@@ -49,7 +47,7 @@
                     </BoxView>
                     <BoxView BackgroundColor=" Gray"></BoxView>
             </StackLayout>
-            </ScrollView> 
+            </ScrollView>--> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
