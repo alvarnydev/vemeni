@@ -15,12 +15,17 @@ namespace Vemini.AppNavigation
 		public ErrandView ()
 		{
 			InitializeComponent ();
-            errand_listview.ItemsSource = Enumerable.Range(0, 5).Select(n => $"item-{n}");
+            
         }
 
         private async void MenuItem_OnClickedPlus(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateErrand());
+        }
+
+        private void getErrands()
+        {
+           // errand_listview.ItemsSource = Enumerable.Range(0, 5).Select(n => $"item-{n}");
         }
     }
 }

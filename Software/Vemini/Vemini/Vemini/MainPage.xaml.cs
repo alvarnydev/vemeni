@@ -17,7 +17,8 @@ namespace Vemini
         //Redirecting to login page 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-          await Navigation.PushAsync(new Anmeldung());
+            //DependencyService.Get<Toast>().LongAlert("Das ist ein Test Toast");
+            await Navigation.PushAsync(new Anmeldung());
         }
     }
 }

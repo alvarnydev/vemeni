@@ -15,13 +15,14 @@ namespace Vemini
             testErrand.Id = 6;
             testErrand.User = 3;
             testErrand.Type = 0;
-            testErrand.Title = " Ich bin ein Test 2";
+            testErrand.Category = 0;
+            testErrand.Title = " Ich bin ein Test von Benji";
             testErrand.Description = "Hey ich teste von Benji";
-            testErrand.location_lat = 10;
-            testErrand.Location_lon = 20;
+            testErrand.LocationLat = 10;
+            testErrand.LocationLon = 20;
             testErrand.Date = DateTime.Now;
-            testErrand.Status = 1;
-            testErrand.Accepted_by = 2;
+            testErrand.Status = 0;
+            testErrand.AcceptedBy = 2;
 
             ErrandService.AddErrand(testErrand);
         }

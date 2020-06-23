@@ -14,7 +14,10 @@ namespace Vemini.Models
         public int User { get; set; }
 
         [JsonProperty("type")]
-        public int Type { get; set; } 
+        public int Type { get; set; }
+
+        [JsonProperty("category")]
+        public int Category { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -22,11 +25,14 @@ namespace Vemini.Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("location_lon")]
-        public double Location_lon { get; set; }
+        [JsonProperty("address")]
+        public string Address { get; set; }
 
-        [JsonProperty("location_lat")]
-        public double location_lat { get; set; }
+        [JsonProperty("locationLon")]
+        public double LocationLon { get; set; }
+
+        [JsonProperty("locationLat")]
+        public double LocationLat { get; set; }
 
         [JsonProperty("date")]
         public DateTime Date { get; set; }
@@ -34,7 +40,7 @@ namespace Vemini.Models
         [JsonProperty("status")]
         public int Status { get; set; }
 
-        [JsonProperty("accepted_by")]
-        public int Accepted_by { get; set; }
+        [JsonProperty("acceptedBy")]
+        public int AcceptedBy { get; set; }
     }
 }
