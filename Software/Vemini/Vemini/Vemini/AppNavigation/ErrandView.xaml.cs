@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vemini.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,7 @@ namespace Vemini.AppNavigation
 		public ErrandView ()
 		{
             InitializeComponent();
-            errand_listview.ItemsSource = Enumerable.Range(0, 5).Select(n => $"item-{n}");
+            getErrandsToList();
 
         }
 
@@ -29,5 +30,23 @@ namespace Vemini.AppNavigation
             var response =  CrossPermissions.Current.RequestPermissionsAsync(Permission.Calendar).Result;
         }
 
+        private void getErrandsToList()
+        {
+            
+
+            List<Errand> errandDbList = new List<Errand>();
+
+            //-----getErrands in ErrandServices----//
+            errandDbList.Add(TestCaseClass.GetExampleErrand());
+            errandDbList.Add(TestCaseClass.GetExampleErrand());
+            errandDbList.Add(TestCaseClass.GetExampleErrand());
+            //-------------Substitute--------------//
+
+            errand_listview.ItemsSource = errandDbList.Select(n => $"item-{n}");
+           // errand_listview.ItemTemplate = new DataTemplate(ImageCell(ImageSource = this.)); //=>
+            //{
+            //    return new ImageCell ;
+            //});
+        }
     }
 }

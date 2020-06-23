@@ -18,7 +18,7 @@
         <StackLayout BackgroundColor="White">
 
             <!--Hier die Karte-->
-            <maps:Map VerticalOptions="FillAndExpand" IsShowingUser="True" IsEnabled="True" MapType="Street" >
+            <maps:Map VerticalOptions="FillAndExpand" IsShowingUser="True" IsEnabled="True" MapType="Street" HeightRequest="300">
 
             </maps:Map>
             <!--Bis hier-->
