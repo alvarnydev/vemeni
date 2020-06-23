@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,18 +15,19 @@ namespace Vemini.AppNavigation
 	{
 		public ErrandView ()
 		{
-			InitializeComponent ();
-            
+            InitializeComponent();
+            errand_listview.ItemsSource = Enumerable.Range(0, 5).Select(n => $"item-{n}");
+
         }
 
         private async void MenuItem_OnClickedPlus(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateErrand());
         }
-
-        private void getErrands()
+        private  void GetGeoPermission()
         {
-           // errand_listview.ItemsSource = Enumerable.Range(0, 5).Select(n => $"item-{n}");
+            var response =  CrossPermissions.Current.RequestPermissionsAsync(Permission.Calendar).Result;
         }
+
     }
 }
