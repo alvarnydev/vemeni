@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using Android.Widget;
 using Newtonsoft.Json;
 using Vemini.Models;
 using Xamarin.Forms;
