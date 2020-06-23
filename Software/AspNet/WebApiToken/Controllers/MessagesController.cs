@@ -61,14 +61,14 @@ namespace WebApiToken.Controllers
 
         // PUT: api/Messages/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMessages(int id, Message messages)
+        public async Task<IActionResult> PutMessages(int id, Message message)
         {
-            if (id != messages.Id)
+            if (id != message.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(messages).State = EntityState.Modified;
+            _context.Entry(message).State = EntityState.Modified;
 
             try
             {
@@ -86,14 +86,17 @@ namespace WebApiToken.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(new
+            {
+                message = $"Successfully changed message with id {message.Id}"
+            });
         }
 
         // POST: api/Messages
         [HttpPost]
         public async Task<ActionResult<Message>> PostMessages(Message messages)
         {
-            _context.Messages.Add(messages);
+            await _context.Messages.AddAsync(messages);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMessages", new { id = messages.Id }, messages);
@@ -101,18 +104,21 @@ namespace WebApiToken.Controllers
 
         // DELETE: api/Messages/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Message>> DeleteMessages(int id)
+        public async Task<ActionResult> DeleteMessages(int id)
         {
-            var messages = await _context.Messages.FindAsync(id);
-            if (messages == null)
+            var message = await _context.Messages.FindAsync(id);
+            if (message == null)
             {
                 return NotFound();
             }
 
-            _context.Messages.Remove(messages);
+            _context.Messages.Remove(message);
             await _context.SaveChangesAsync();
 
-            return messages;
+            return Ok(new
+            {
+                message = $"Successfully removed messages with id {message.Id}"
+            });
         }
 
         private bool MessagesExists(int id)

@@ -61,14 +61,14 @@ namespace WebApiToken.Controllers
 
         // PUT: api/Ratings/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRatings(int id, Rating ratings)
+        public async Task<IActionResult> PutRatings(int id, Rating rating)
         {
-            if (id != ratings.Id)
+            if (id != rating.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(ratings).State = EntityState.Modified;
+            _context.Entry(rating).State = EntityState.Modified;
 
             try
             {
@@ -86,14 +86,17 @@ namespace WebApiToken.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(new
+            {
+                message = $"Successfully changed rating with id {rating.Id}"
+            });
         }
 
         // POST: api/Ratings
         [HttpPost]
         public async Task<ActionResult<Rating>> PostRatings(Rating ratings)
         {
-            _context.Ratings.Add(ratings);
+            await _context.Ratings.AddAsync(ratings);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRatings", new { id = ratings.Id }, ratings);
@@ -101,18 +104,21 @@ namespace WebApiToken.Controllers
 
         // DELETE: api/Ratings/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Rating>> DeleteRatings(int id)
+        public async Task<ActionResult> DeleteRatings(int id)
         {
-            var ratings = await _context.Ratings.FindAsync(id);
-            if (ratings == null)
+            var rating = await _context.Ratings.FindAsync(id);
+            if (rating == null)
             {
                 return NotFound();
             }
 
-            _context.Ratings.Remove(ratings);
+            _context.Ratings.Remove(rating);
             await _context.SaveChangesAsync();
 
-            return ratings;
+            return Ok(new
+            {
+                message = $"Successfully removed rating with id {rating.Id}"
+            });
         }
 
         private bool RatingsExists(int id)

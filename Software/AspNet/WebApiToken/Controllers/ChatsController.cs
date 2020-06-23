@@ -61,14 +61,14 @@ namespace WebApiToken.Controllers
 
         // PUT: api/Chats/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutChat(int id, Chat chats)
+        public async Task<IActionResult> PutChat(int id, Chat chat)
         {
-            if (id != chats.Id)
+            if (id != chat.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(chats).State = EntityState.Modified;
+            _context.Entry(chat).State = EntityState.Modified;
 
             try
             {
@@ -86,33 +86,39 @@ namespace WebApiToken.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(new
+            {
+                message = $"Successfully changed chat with id {chat.Id}"
+            });
         }
 
         // POST: api/Chats
         [HttpPost]
-        public async Task<ActionResult<Chat>> PostChat(Chat chats)
+        public async Task<ActionResult<Chat>> PostChat(Chat chat)
         {
-            _context.Chats.Add(chats);
+            await _context.Chats.AddAsync(chat);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChat", new { id = chats.Id }, chats);
+            return CreatedAtAction("GetChat", new { id = chat.Id }, chat);
         }
 
         // DELETE: api/Chats/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Chat>> DeleteChat(int id)
+        public async Task<ActionResult> DeleteChat(int id)
         {
-            var chats = await _context.Chats.FindAsync(id);
-            if (chats == null)
+            var chat = await _context.Chats.FindAsync(id);
+            if (chat == null)
             {
                 return NotFound();
             }
 
-            _context.Chats.Remove(chats);
+            _context.Chats.Remove(chat);
             await _context.SaveChangesAsync();
 
-            return chats;
+            return Ok(new
+            {
+                message = $"Successfully removed chat with id {chat.Id}"
+            });
         }
 
         private bool ChatExists(int id)

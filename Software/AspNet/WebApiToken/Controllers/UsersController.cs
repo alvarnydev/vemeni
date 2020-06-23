@@ -207,7 +207,10 @@ namespace WebApiToken.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(new
+            {
+                message = $"Successfully changed user with id {user.Id}"
+            });
         }
 
         // DELETE: api/User/5
@@ -223,7 +226,10 @@ namespace WebApiToken.Controllers
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return user;
+            return Ok(new
+            {
+                message = $"Successfully removed user with id {user.Id}"
+            });
         }
 
         private bool UserExists(int id)

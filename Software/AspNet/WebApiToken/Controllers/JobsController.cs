@@ -79,14 +79,14 @@ namespace WebApiToken.Controllers
 
         // PUT: api/Jobs/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutJobs(int id, Job jobs)
+        public async Task<IActionResult> PutJobs(int id, Job job)
         {
-            if (id != jobs.Id)
+            if (id != job.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(jobs).State = EntityState.Modified;
+            _context.Entry(job).State = EntityState.Modified;
 
             try
             {
@@ -104,33 +104,39 @@ namespace WebApiToken.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(new
+            {
+                message = $"Successfully changed job with id {job.Id}"
+            });
         }
 
         // POST: api/Jobs
         [HttpPost]
-        public async Task<ActionResult<Job>> PostJobs(Job jobs)
+        public async Task<ActionResult<Job>> PostJobs(Job job)
         {
-            _context.Jobs.Add(jobs);
+            await _context.Jobs.AddAsync(job);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetJobs", new { id = jobs.Id }, jobs);
+            return CreatedAtAction("GetJobs", new { id = job.Id }, job);
         }
 
         // DELETE: api/Jobs/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Job>> DeleteJobs(int id)
+        public async Task<ActionResult> DeleteJobs(int id)
         {
-            var jobs = await _context.Jobs.FindAsync(id);
-            if (jobs == null)
+            var job = await _context.Jobs.FindAsync(id);
+            if (job == null)
             {
                 return NotFound();
             }
 
-            _context.Jobs.Remove(jobs);
+            _context.Jobs.Remove(job);
             await _context.SaveChangesAsync();
 
-            return jobs;
+            return Ok(new
+            {
+                message = $"Successfully removed job with id {job.Id}"
+            });
         }
 
         private bool JobsExists(int id)
