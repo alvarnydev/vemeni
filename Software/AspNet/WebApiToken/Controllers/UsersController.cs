@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Scaffolding;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApiToken.Entities;
@@ -19,7 +20,7 @@ using WebApiToken.Services;
 
 namespace WebApiToken.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -113,22 +114,9 @@ namespace WebApiToken.Controllers
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            /*
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_apiSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
-            */
-
+            // Create token
+            var tokenString = CreateToken(user);
+            
             // Return basic user info and authentication token
             return Ok(new
             {
@@ -136,8 +124,8 @@ namespace WebApiToken.Controllers
                 Username = user.Username,
                 Email = user.Email,
                 Firstname = user.Firstname,
-                Lastname = user.Lastname
-                //Token = tokenString
+                Lastname = user.Lastname,
+                Token = tokenString
             });
         }
 
@@ -232,9 +220,46 @@ namespace WebApiToken.Controllers
             });
         }
 
+        // Checks if user exists
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        // Creates a token to authenticate user
+        public string CreateToken(User user)
+        {
+
+            // Create token handler
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            // Create key out of stored secret
+            var key = Encoding.ASCII.GetBytes(_apiSettings.Secret);
+
+            // Specify how token should be created
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+
+                // The identity which / who can describe you and is trusted
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+
+                    // Who you are
+                    new Claim(JwtRegisteredClaimNames.Iss, _apiSettings.Issuer), 
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Aud, _apiSettings.Audience)
+
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            // Create token with token handler
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            string tokenString = tokenHandler.WriteToken(token);
+
+            // Return string
+            return tokenString;
         }
     }
 }
