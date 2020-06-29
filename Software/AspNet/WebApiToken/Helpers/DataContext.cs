@@ -75,9 +75,24 @@ namespace WebApiToken.Helpers
                     .HasColumnName("accepted_by")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Address)
-                    .HasColumnName("address")
-                    .HasMaxLength(80)
+                entity.Property(e => e.AddressCity)
+                    .HasColumnName("address_city")
+                    .HasMaxLength(45)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AddressPlz)
+                    .HasColumnName("address_plz")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AddressStreet)
+                    .HasColumnName("address_street")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AddressStrnmbr)
+                    .HasColumnName("address_strnmbr")
+                    .HasMaxLength(10)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Category)
@@ -94,10 +109,6 @@ namespace WebApiToken.Helpers
                     .HasColumnName("description")
                     .HasMaxLength(500)
                     .IsUnicode(false);
-
-                entity.Property(e => e.LocationLat).HasColumnName("location_lat");
-
-                entity.Property(e => e.LocationLon).HasColumnName("location_lon");
 
                 entity.Property(e => e.Status)
                     .HasColumnName("status")
