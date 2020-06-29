@@ -37,11 +37,9 @@ namespace Vemini.AppNavigation
             List<Errand> errandDbList = new List<Errand>();
 
             //-----getErrands in ErrandServices----//
-            errandDbList.Add(TestCaseClass.GetExampleErrandShort());
-            errandDbList.Add(TestCaseClass.GetExampleErrandLong());
-            errandDbList.Add(TestCaseClass.GetExampleErrandShort());
-            //-------------Substitute--------------//
-
+            // Change Berlin to User town 
+            errandDbList = ErrandService.GetErrands("berlin");
+           
             errand_listview.ItemsSource = errandDbList.Select(n => $"item-{n}");
            // errand_listview.ItemTemplate = new DataTemplate(ImageCell(ImageSource = this.)); //=>
             //{

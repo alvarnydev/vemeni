@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Android.Net.Wifi.Aware;
+
 using Vemini.Models;
 using Vemini.Services;
 
@@ -49,6 +49,16 @@ namespace Vemini
             Errand testErrand = GetExampleErrandShort();
 
             ErrandService.AddErrand(testErrand);
+        }
+
+        public static void testGetErrands(string city)
+        {
+           List<Errand> testErrandList = ErrandService.GetErrands(city);
+           foreach (Errand errand in testErrandList)
+           {
+               Console.WriteLine(errand.Title);
+           }
+           
         }
     }
 }

@@ -232,7 +232,7 @@ namespace Vemini
 
         private void Button_OnClickedAnmelden(object sender, EventArgs e)
         {
-           TestCaseClass.testAddErrand();
+           TestCaseClass.testGetErrands("berlin");
         }
     }
 }
