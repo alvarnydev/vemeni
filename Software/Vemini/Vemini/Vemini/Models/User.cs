@@ -21,21 +21,14 @@ namespace Vemini
         [JsonProperty("email")]
         public string Email { get; set; }
 
-
-
         [JsonProperty("username")]
         public string UserName { get; set; }
-
 
         [JsonProperty("link")]
         public string Link { get; set; }
 
         [JsonProperty("picture")]
         public string Picture { get; set; }
-
-
-
-
 
         [JsonProperty("address_city")]
         public string City { get; set; }

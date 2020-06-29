@@ -17,25 +17,39 @@ namespace Vemini.AppNavigation
 			InitializeComponent ();
 		}
 
+        /*
+         * Author: Benedikt Blank
+         * Implemented (last): 29.06.20
+         * Neuer Auftrag wird anhand der vom User eingegebenen Daten erstellt und in Datenbank geladen
+         */
         private void Button_OnClickedErstellen(object sender, EventArgs e)
         {
            Errand newErrand = new Errand();
-            // newErrand.User = Getcurrent User 
-
-
+           
+           // newErrand.User = Getcurrent User 
             newErrand.Type = getPayment();
             newErrand.Category = getCategory();
             newErrand.Title = title_entry.Text;
             newErrand.Description = description_editor.Text;
-           // newErrand.LocationLat = street_entry.Text;
-            newErrand.LocationLon = Convert.ToDouble(streetnumber_entry.Text);
-            newErrand.Address = plz_entry.Text;
-            // newErrand.city = city_entry.Text;
+            newErrand.AdresseStreet = street_entry.Text;
+            newErrand.AdresseNmbr =streetnumber_entry.Text;
+            newErrand.AddressePlz = plz_entry.Text;
+            newErrand.AdresseCity = city_entry.Text;
             newErrand.Date = DateTime.Now;
             newErrand.Status = 0;
             newErrand.AcceptedBy = 0;
+
+            try
+            {
+                ErrandService.AddErrand(newErrand);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Auftrag konnte nicht erstellt und in Datenbank geladen werden: "+ error);
+            }
         }
 
+        //Checkbox wird in int konvertiert und zurueckgegeben
         private int getPayment()
         {
             bool payment;
@@ -52,6 +66,7 @@ namespace Vemini.AppNavigation
             return Convert.ToInt32(payment);
         }
 
+        //Kategorie wird in int konvertiert und zurueckgegeben
         private int getCategory()
         {
             int category;

@@ -25,14 +25,17 @@ namespace Vemini.Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("address")]
-        public string Address { get; set; }
+        [JsonProperty("address_plz")]
+        public string AddressePlz { get; set; }
 
-        [JsonProperty("locationLon")]
-        public double LocationLon { get; set; }
+        [JsonProperty("address_city")]
+        public string AdresseCity { get; set; }
 
-        [JsonProperty("locationLat")]
-        public double LocationLat { get; set; }
+        [JsonProperty("address_street")]
+        public string AdresseStreet { get; set; }
+
+        [JsonProperty("address_strnmbr")]
+        public string AdresseNmbr { get; set; }
 
         [JsonProperty("date")]
         public DateTime? Date { get; set; }

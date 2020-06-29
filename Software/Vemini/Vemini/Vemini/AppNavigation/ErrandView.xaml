@@ -17,40 +17,26 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
 
-            <!--Hier die Karte-->
+          
             <maps:Map VerticalOptions="FillAndExpand" IsShowingUser="True" IsEnabled="True" MapType="Street" HeightRequest="300">
-
             </maps:Map>
-            <!--Bis hier-->
-            <!--LISTVIEW einbauen-->
+            
+            
             <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
                 <StackLayout BackgroundColor="CornflowerBlue"
                              Padding="10,10,10,10">
-                    <ListView x:Name="errand_listview"/>
+                    <ListView x:Name="errand_listview" BackgroundColor="White" ItemTapped="OnItemSelected" SeparatorColor="CornflowerBlue">
+                        <ListView.ItemTemplate>
+                            <DataTemplate >
+                                <TextCell 
+                                          Text="{Binding Title}"
+                                          Detail="{Binding Category}"
+                                          TextColor="Black"
+                                          DetailColor="LightGray"></TextCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-
-                    <!--<BoxView BackgroundColor="White">
-                        </BoxView>
-                    
-                <BoxView BackgroundColor=" Gray"></BoxView>
-                    <BoxView BackgroundColor="White">
-                    </BoxView>
-                    <BoxView BackgroundColor=" Gray"></BoxView>
-                    <BoxView BackgroundColor="White">
-                    </BoxView>
-                    <BoxView BackgroundColor=" Gray"></BoxView>
-                    <BoxView BackgroundColor="White">
-                    </BoxView>
-                    <BoxView BackgroundColor=" Gray"></BoxView>
-                    <BoxView BackgroundColor="White">
-                    </BoxView>
-                    <BoxView BackgroundColor=" Gray"></BoxView>
-                    <BoxView BackgroundColor="White">
-                    </BoxView>
-                    <BoxView BackgroundColor=" Gray"></BoxView>
-                    <BoxView BackgroundColor="White">
-                    </BoxView>
-                    <BoxView BackgroundColor=" Gray"></BoxView>-->
                 </StackLayout>
             </ScrollView>
         </StackLayout>
