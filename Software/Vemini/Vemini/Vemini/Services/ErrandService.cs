@@ -21,7 +21,21 @@ namespace Vemini
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(url, content);
 
-         //   DependencyService.Get<Toast>().LongAlert("Result: " + response);
+           //DependencyService.Get<Toast>().LongAlert("Result: " + response);
+        }
+
+        public async static void GetErrands(string city)
+        {
+            string url = Constants.VeminiJobsCityUrl + city;
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var client = new HttpClient();
+            var response = client.SendAsync(request).Result;
+            using (HttpContent content = response.Content)
+            {
+
+                var json = content.ReadAsStringAsync();
+                Errand DbErrand = JsonConvert.DeserializeObject<Errand>(json.Result);
+            }
         }
     }
 

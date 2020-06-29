@@ -17,6 +17,7 @@ namespace Vemini
         //Database Constants
         public const string VeminiUrl = "https://vergissmeinnicht.f2.htw-berlin.de/";
         public const string VeminiJobsUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/jobs/";
+        public const string VeminiJobsCityUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/jobs/city/";
         public const string VeminiUsersUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/";
 
         // Google OAuth

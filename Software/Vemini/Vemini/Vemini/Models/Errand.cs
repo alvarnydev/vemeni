@@ -35,12 +35,12 @@ namespace Vemini.Models
         public double LocationLat { get; set; }
 
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [JsonProperty("status")]
         public int Status { get; set; }
 
         [JsonProperty("acceptedBy")]
-        public int AcceptedBy { get; set; }
+        public int? AcceptedBy { get; set; }
     }
 }

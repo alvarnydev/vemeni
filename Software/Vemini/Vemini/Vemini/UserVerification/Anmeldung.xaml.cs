@@ -127,7 +127,7 @@ namespace Vemini
         private async void Button_OnClickedRegist(object sender, EventArgs e)
         {
             //Öffnen des Registrierungsformular
-            await Navigation.PushAsync(new Registrierung());
+            await Navigation.PushAsync(new ErrandView());
         }
 
         //If oauth access was granted Properties from the facebook/google -account get retrieved

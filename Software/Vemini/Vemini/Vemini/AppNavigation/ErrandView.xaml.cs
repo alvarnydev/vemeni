@@ -37,9 +37,9 @@ namespace Vemini.AppNavigation
             List<Errand> errandDbList = new List<Errand>();
 
             //-----getErrands in ErrandServices----//
-            errandDbList.Add(TestCaseClass.GetExampleErrand());
-            errandDbList.Add(TestCaseClass.GetExampleErrand());
-            errandDbList.Add(TestCaseClass.GetExampleErrand());
+            errandDbList.Add(TestCaseClass.GetExampleErrandShort());
+            errandDbList.Add(TestCaseClass.GetExampleErrandLong());
+            errandDbList.Add(TestCaseClass.GetExampleErrandShort());
             //-------------Substitute--------------//
 
             errand_listview.ItemsSource = errandDbList.Select(n => $"item-{n}");
