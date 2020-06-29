@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using Newtonsoft.Json;
 using Vemin;
 using Vemini.AppNavigation;
@@ -23,6 +26,7 @@ namespace Vemini
     {
         private Account account;
         private readonly AccountStore store;
+        private static readonly HttpClient client = new HttpClient();
 
         public Anmeldung()
         {
@@ -230,9 +234,44 @@ namespace Vemini
             Debug.WriteLine("Authentication error: " + e.Message);
         }
 
-        private void Button_OnClickedAnmelden(object sender, EventArgs e)
+        // Login to application via API
+        private async void Button_OnClickedAnmelden(object sender, EventArgs e)
         {
-           TestCaseClass.testAddErrand();
+
+            // Get user and password
+            string user = email_entry.Text;
+            string password = password_entry.Text;
+
+            // Create object
+            var userLogin = new UserLogin
+            {
+                EmailOrUsername = user,
+                Password = password
+            };
+
+            // Serialize object
+            string jsonContent = JsonConvert.SerializeObject(userLogin);
+
+            // Formulate request
+            var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(Constants.LoginUrl, stringContent);
+
+            // Update user info
+            var responseString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("test");
+
+            // Check response
+            if (response.IsSuccessStatusCode)
+            {
+                // Navigate forward
+                await Navigation.PushAsync(new ErrandView());
+            }
+            else
+            {
+                // Display error
+                await DisplayAlert("Login", "User or Password is incorrect, please retry.", "OK");
+            }
+
         }
     }
 }
