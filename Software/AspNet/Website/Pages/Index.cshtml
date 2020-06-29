@@ -1,0 +1,14 @@
+﻿@page
+@using Website.Components
+@model IndexModel
+@{
+    ViewData["Title"] = "Vergissmeinnicht";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vergissmeinnicht</h1>
+</div>
+
+@(await Html.RenderComponentAsync<JobList>(RenderMode.ServerPrerendered))
+
+<script src="_framework/blazor.server.js"></script>
