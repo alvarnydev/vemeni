@@ -92,7 +92,7 @@ namespace WebApiToken.Helpers
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasColumnName("description")
-                    .HasMaxLength(50)
+                    .HasMaxLength(500)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LocationLat).HasColumnName("location_lat");
