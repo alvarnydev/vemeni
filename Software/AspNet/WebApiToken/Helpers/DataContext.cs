@@ -97,7 +97,7 @@ namespace WebApiToken.Helpers
 
                 entity.Property(e => e.Category)
                     .HasColumnName("category")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("varchar(30)");
 
                 entity.Property(e => e.Date)
                     .HasColumnName("date")
