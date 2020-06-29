@@ -1,0 +1,79 @@
+﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using WebApiOAuth2.Models;
+
+namespace WebApiOAuth2.Services
+{
+
+    // Class that manages how select queries to the 'messages' table are performed
+    public class MessageQuery
+    {
+
+        // Reference to database
+        public AppDb Db { get; }
+
+        // Constructor
+        public MessageQuery(AppDb db)
+        {
+            Db = db;
+        }
+
+        // SQl Select command: Select one by id
+        public async Task<Message> FindOneAsync(int id)
+        {
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = @"SELECT `id`, `chat_id`, `content`, `author`, `receiver` FROM `messages` WHERE `id` = @id";
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@id",
+                DbType = DbType.Int32,
+                Value = id,
+            });
+            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+            return result.Count > 0 ? result[0] : null;
+        }
+
+        // SQl Select command: Select latest 10 entries by id
+        public async Task<List<Message>> LatestPostsAsync()
+        {
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = @"SELECT `id`, `chat_id`, `content`, `author`, `receiver` FROM `messages` ORDER BY `id` DESC LIMIT 10;";
+            return await ReadAllAsync(await cmd.ExecuteReaderAsync());
+        }
+
+        // SQl Delete command: Delete all
+        public async Task DeleteAllAsync()
+        {
+            using var txn = await Db.Connection.BeginTransactionAsync();
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = @"DELETE FROM `messages`";
+            await cmd.ExecuteNonQueryAsync();
+            await txn.CommitAsync();
+        }
+
+        // Database reader method to retrieve properties
+        private async Task<List<Message>> ReadAllAsync(DbDataReader reader)
+        {
+            var messages = new List<Message>();
+            using (reader)
+            {
+                while (await reader.ReadAsync())
+                {
+                    var message = new Message(Db)
+                    {
+                        Id = reader.GetInt32(0),
+                        Chat_Id = reader.GetInt32(1),
+                        Content = reader.GetString(2),
+                        Author = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                        Receiver = reader.IsDBNull(4) ? 0 : reader.GetInt32(4)
+                    };
+                    messages.Add(message);
+                }
+            }
+            return messages;
+        }
+    }
+}
