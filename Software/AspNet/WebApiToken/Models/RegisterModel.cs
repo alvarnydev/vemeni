@@ -24,6 +24,21 @@ namespace WebApiToken.Models
         [Required]
         public string LastName { get; set; }
 
-        
+        [Required]
+        public string? Phone { get; set; }
+
+        [Required]
+        public string? AddressPlz { get; set; }
+
+        [Required]
+        public string? AddressCity { get; set; }
+
+        [Required]
+        public string? AddressStreet { get; set; }
+
+        [Required]
+        public string? AddressStrnmbr { get; set; }
+
+
     }
 }

@@ -137,14 +137,7 @@ namespace WebApiToken.Controllers
         {
 
             // Map model back to user
-            //var user = _mapper.Map<User>(model);
-            var user = new User
-            {
-                Username = model.Username,
-                Email = model.Email,
-                Firstname = model.FirstName,
-                Lastname = model.LastName
-            };
+            var user = _mapper.Map<User>(model);
 
             // Try to create user
             try

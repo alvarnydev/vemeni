@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -39,6 +40,7 @@ namespace WebApiToken
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
+                mc.CreateMap<char, byte>().ConvertUsing(c => Convert.ToByte(c));
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
