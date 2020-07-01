@@ -18,26 +18,38 @@ namespace Vemini
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("email")]
-        public string Email { get; set; }
-
         [JsonProperty("username")]
         public string UserName { get; set; }
 
-        [JsonProperty("link")]
-        public string Link { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
 
-        [JsonProperty("picture")]
-        public string Picture { get; set; }
+        [JsonProperty("firstname")]
+        public string FirstName { get; set; }
 
-        [JsonProperty("address_city")]
-        public string City { get; set; }
+        [JsonProperty("lastname")]
+        public string LastName { get; set; }
+
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
 
         [JsonProperty("address_plz")]
         public string PLZ { get; set; }
 
+        [JsonProperty("address_city")]
+        public string City { get; set; }
+
         [JsonProperty("address_street")]
         public string Street { get; set; }
+
+        [JsonProperty("address_strnmbr")]
+        public string StreetNumber { get; set; }
+
+        [JsonProperty("img")]
+        public string Picture { get; set; }
 
         [JsonProperty("lastvisit")]
         public string LastVisit { get; set; }
