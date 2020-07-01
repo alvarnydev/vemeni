@@ -56,7 +56,7 @@ namespace WebApiToken.Services
                 return null;
 
             // Try to find user
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username || u.Email == username);
 
             // Check if username exists
             if (user == null)
@@ -83,6 +83,8 @@ namespace WebApiToken.Services
             // Check if already exists
             if (await _context.Users.AnyAsync(x => x.Username == user.Username))
                 throw new ApiException("Username \"" + user.Username + "\" is already taken");
+            if (await _context.Users.AnyAsync(x => x.Email == user.Email))
+                throw new ApiException("E-Mail \"" + user.Email + "\" is already taken");
 
             // Create password hash and salt
             byte[] passwordHash, passwordSalt;
