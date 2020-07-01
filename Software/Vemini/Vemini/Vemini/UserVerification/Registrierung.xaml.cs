@@ -27,8 +27,61 @@ namespace Vemini
         private async void Button_OnClickedRegist(object sender, EventArgs e)
         {
 
+            // Validate input
+            if (await validateStrings())
+            {
+                // Create user object
+                var user = new User
+                {
+
+                    UserName = UserEntry.Text,
+                    Password = PwEntry.Text,
+                    FirstName = FirstNameEntry.Text,
+                    LastName = LastNameEntry.Text,
+                    Phone = PhoneNumberEntry.Text,
+                    Email = EmailEntry.Text,
+                    PLZ = PlzEntry.Text,
+                    City = CityEntry.Text,
+                    Street = StreetEntry.Text,
+                    StreetNumber = StreetnumberEntry.Text
+
+                };
+
+                // Serialize object
+                string jsonContent = JsonConvert.SerializeObject(user);
+
+                // Formulate request
+                var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(Constants.RegisterUrl, stringContent);
+
+                // Update user info
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                // Check response
+                if (response.IsSuccessStatusCode)
+                {
+
+                    // Display success
+                    await DisplayAlert("Registrierung erfolgreich", "Dein Account wurde erfolgreich angelegt.", "OK");
+
+                    // Navigate forward
+                    await Navigation.PushAsync(new Anmeldung());
+
+                }
+                else
+                {
+
+                    // Display error
+                    await DisplayAlert("Registrierung fehlgeschlagen", $"Ein Fehler auf unserer Seite ist aufgetreten: {responseString}", "OK");
+
+                }
+            }
+        }
+
+        private async Task<bool> validateStrings()
+        {
             // Empty string validation
-			if (String.IsNullOrWhiteSpace(FirstNameEntry.Text)) await DisplayAlert("Fehlende Eingabe", "Bitte Vornamen eingeben.", "OK");
+            if (String.IsNullOrWhiteSpace(FirstNameEntry.Text)) await DisplayAlert("Fehlende Eingabe", "Bitte Vornamen eingeben.", "OK");
             else if (String.IsNullOrWhiteSpace(LastNameEntry.Text)) await DisplayAlert("Fehlende Eingabe", "Bitte Nachnamen eingeben.", "OK");
             else if (String.IsNullOrWhiteSpace(StreetEntry.Text)) await DisplayAlert("Fehlende Eingabe", "Bitte Straße eingeben.", "OK");
             else if (String.IsNullOrWhiteSpace(PlzEntry.Text)) await DisplayAlert("Fehlende Eingabe", "Bitte Postleitzahl eingeben.", "OK");
@@ -40,56 +93,16 @@ namespace Vemini
             else if (String.IsNullOrWhiteSpace(PwConfirmEntry.Text)) await DisplayAlert("Fehlende Eingabe", "Bitte Passwort bestätigen.", "OK");
 
             // Password validation
-            else if (PwEntry.Text != PwConfirmEntry.Text) await DisplayAlert("Fehler bei Eingabe", "Die eingegebenen Passwörter stimmen nicht überein.", "OK");
+            else if (PwEntry.Text != PwConfirmEntry.Text)
+                await DisplayAlert("Fehler bei Eingabe", "Die eingegebenen Passwörter stimmen nicht überein.", "OK");
 
-            // Create user object
-            var user = new User
-            {
+            // If all checks were passed
+            else return true;
 
-                UserName = UserEntry.Text,
-                Password = PwEntry.Text,
-                FirstName = FirstNameEntry.Text,
-                LastName = LastNameEntry.Text,
-                Phone = PhoneNumberEntry.Text,
-                Email = EmailEntry.Text,
-                PLZ = PlzEntry.Text,
-                City = CityEntry.Text,
-                Street = StreetEntry.Text,
-                StreetNumber = ""
 
-            };
-
-            // Serialize object
-            string jsonContent = JsonConvert.SerializeObject(user);
-
-            // Formulate request
-            var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(Constants.LoginUrl, stringContent);
-
-            // Update user info
-            var responseString = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("test");
-
-            // Check response
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Display success
-                await DisplayAlert("Registrierung erfolgreich", "Dein Account wurde erfolgreich angelegt.", "OK");
-
-                // Navigate forward
-                await Navigation.PushAsync(new Anmeldung());
-
-            }
-            else
-            {
-
-                // Display error
-                await DisplayAlert("Registrierung fehlgeschlagen", $"Ein Fehler auf unserer Seite ist aufgetreten: {responseString}", "OK");
-
-            }
+            return false;
 
         }
 
-	}
+    }
 }

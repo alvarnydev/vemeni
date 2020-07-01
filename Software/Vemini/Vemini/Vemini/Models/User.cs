@@ -60,12 +60,11 @@ namespace Vemini
 
         public User() { }
 
-        public User(string id, string email, string userName, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
+        public User(string id, string userName, string email, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
         {
             Id = id;
             Email = email;
             UserName = userName;
-            Link = link;
             Picture = picture;
             City = city;
             PLZ = pLZ;

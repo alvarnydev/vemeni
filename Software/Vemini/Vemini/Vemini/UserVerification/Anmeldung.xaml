@@ -30,7 +30,7 @@
             <RelativeLayout>
                 <Entry Text=""
                        x:Name="email_entry"
-                       Placeholder="Email-adress"
+                       Placeholder="Email-Adresse oder Benutzername"
                        PlaceholderColor="White"
                        Keyboard="Email"
                        WidthRequest="270"
@@ -43,7 +43,7 @@
                     Factor=0.3
                     }"
                 ></Entry>
-                <Entry Placeholder="Password"
+                <Entry Placeholder="Passwort"
                        x:Name="password_entry"
                        PlaceholderColor="White"
                        IsPassword="True"
@@ -78,7 +78,7 @@
                         Clicked="Button_OnClickedAnmelden"
                 ></Button>
                 <Button BackgroundColor="DarkBlue"
-                        Text="Facebook SignIn"
+                        Text="Facebook Sign-In"
                         TextColor="White"
                         Image="facebook_icon.jpg"
                         Clicked="Button_OnClickedFacebook"

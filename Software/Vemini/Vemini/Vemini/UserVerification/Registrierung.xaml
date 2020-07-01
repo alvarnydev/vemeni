@@ -40,39 +40,43 @@
                         <Entry x:Name="LastNameEntry"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="0">
-                        <Label Text="Straße + Hausnummer" TextColor="White" Margin="0,0,0,-15"></Label>
+                        <Label Text="Straße" TextColor="White" Margin="0,0,0,-15"></Label>
                         <Entry  x:Name="StreetEntry"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="1">
-                        <Label Text="PLZ" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="PlzEntry"></Entry>
+                        <Label Text="Hausnummer" TextColor="White" Margin="0,0,0,-15"></Label>
+                        <Entry  x:Name="StreetnumberEntry"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="2" Grid.Column="0">
                         <Label Text="Stadt" TextColor="White" Margin="0,0,0,-15"></Label>
                         <Entry  x:Name="CityEntry"></Entry>
-                        <Label Text=" Konto" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="0,20,0,0"></Label>
                     </StackLayout>
                     <StackLayout Grid.Row="2" Grid.Column="1">
-                        <Label Text="Telefonnummer" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="PhoneNumberEntry"></Entry>
+                        <Label Text="Postleitzahl" TextColor="White" Margin="0,0,0,-15"></Label>
+                        <Entry  x:Name="PlzEntry"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="3" Grid.Column="0">
-                        <Label Text="Nutzername" TextColor="White" Margin="0,30,0,-15"></Label>
+                        <Label Text="Telefonnummer" TextColor="White" Margin="0,0,0,-15"></Label>
+                        <Entry  x:Name="PhoneNumberEntry"></Entry>
+                        <Label Text=" Konto" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="0,20,0,0"></Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="4" Grid.Column="0">
+                        <Label Text="Benutzername" TextColor="White" Margin="0,30,0,-15"></Label>
                         <Entry  x:Name="UserEntry"></Entry>
                     </StackLayout>
-                    <StackLayout Grid.Row="3" Grid.Column="1">
+                    <StackLayout Grid.Row="4" Grid.Column="1">
                         <Label Text="E-Mail-Adresse" TextColor="White" Margin="0,30,0,-15"></Label>
                         <Entry  x:Name="EmailEntry"></Entry>
                     </StackLayout>
-                    <StackLayout Grid.Row="4" Grid.Column="0">
+                    <StackLayout Grid.Row="5" Grid.Column="0">
                         <Label Text="Passwort" TextColor="White" Margin="0,30,0,-15"></Label>
                         <Entry  x:Name="PwEntry"></Entry>
                     </StackLayout>
-                    <StackLayout Grid.Row="4" Grid.Column="1">
+                    <StackLayout Grid.Row="5" Grid.Column="1">
                         <Label Text="Passwort bestätigen" TextColor="White" Margin="0,30,0,-15"></Label>
                         <Entry  x:Name="PwConfirmEntry"></Entry>
                     </StackLayout>
-                    <Button Grid.Row="5" Grid.Column="0" 
+                    <Button Grid.Row="6" Grid.Column="0" 
                             BackgroundColor="White" Text="Registrieren" 
                             TextColor="CornflowerBlue"
                             Margin="10,20,10,20"
