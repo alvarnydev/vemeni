@@ -8,6 +8,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Vemin;
 using Vemini.AppNavigation;
+using Vemini.Models;
 using Xamarin.Auth;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
@@ -256,16 +257,21 @@ namespace Vemini
             var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(Constants.LoginUrl, stringContent);
 
-            // Update user info
+            // Get response content
             var responseString = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("test");
+
+            // Deserialize
+            var userLoginContent = JsonConvert.DeserializeObject<UserLoginResponse>(responseString);
 
             // Check response
             if (response.IsSuccessStatusCode)
             {
 
                 // Read token
+                var token = userLoginContent.Token;
 
+                // Get user to token
+                
 
                 // Navigate forward
                 await Navigation.PushAsync(new ErrandView());
