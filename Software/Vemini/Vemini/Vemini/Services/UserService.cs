@@ -40,7 +40,7 @@ namespace Vemini.Services
                 Application.Current.Properties.Add("Street", user.Street);
                 
 
-                Application.Current.Properties.Add("ProfilePicture", user.Picture);
+                Application.Current.Properties.Add("ProfilePicture", user.Img);
             }
            
         }

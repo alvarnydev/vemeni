@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 /*
  * Author: Benedikt Blank with the help of https://github.com/CuriousDrive/PublicProjects/tree/master/OAuthNativeFlow
@@ -36,20 +33,20 @@ namespace Vemini
         [JsonProperty("email")]
         public string Email { get; set; }
 
-        [JsonProperty("address_plz")]
+        [JsonProperty("addressPlz")]
         public string PLZ { get; set; }
 
-        [JsonProperty("address_city")]
+        [JsonProperty("addressCity")]
         public string City { get; set; }
 
-        [JsonProperty("address_street")]
+        [JsonProperty("addressStreet")]
         public string Street { get; set; }
 
-        [JsonProperty("address_strnmbr")]
+        [JsonProperty("addressStrnmbr")]
         public string StreetNumber { get; set; }
 
         [JsonProperty("img")]
-        public string Picture { get; set; }
+        public string Img { get; set; }
 
         [JsonProperty("lastvisit")]
         public string LastVisit { get; set; }
@@ -65,7 +62,7 @@ namespace Vemini
             Id = id;
             Email = email;
             UserName = userName;
-            Picture = picture;
+            Img = picture;
             City = city;
             PLZ = pLZ;
             Street = street;

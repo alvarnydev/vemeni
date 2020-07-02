@@ -215,7 +215,7 @@ namespace Vemini
                     Application.Current.Properties.Add("Id", user.Id);
                     Application.Current.Properties.Add("UserName", user.UserName);
                     Application.Current.Properties.Add("EmailAddress", user.Email);
-                    Application.Current.Properties.Add("ProfilePicture", user.Picture);
+                    Application.Current.Properties.Add("ProfilePicture", user.Img);
 
 
                     await Navigation.PushAsync(new ErrandView());
@@ -275,6 +275,9 @@ namespace Vemini
 
                 // Get user to id (with token)
                 var user = await GetUserToId(id, token);
+
+                // Update last visit
+
 
                 // Navigate forward
                 await Navigation.PushAsync(new ErrandView());
