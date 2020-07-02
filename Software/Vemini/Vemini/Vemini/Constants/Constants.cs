@@ -22,6 +22,13 @@ namespace Vemini
         public const string LoginUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/authenticate";
         public const string RegisterUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/users/register";
 
+        // Topics
+        public const string UsersUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/users";
+        public const string MessagesUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/messages";
+        public const string ChatsUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/chats";
+        public const string JobsUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/jobs";
+        public const string RatingsUrl = "https://vergissmeinnicht.f2.htw-berlin.de/api/ratings";
+
         // Google OAuth
 
         // For Google login
