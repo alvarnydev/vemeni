@@ -5,9 +5,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
+using Java.Util.Functions;
 using Newtonsoft.Json;
 using Vemin;
 using Vemini.AppNavigation;
+using Vemini.Models;
 using Xamarin.Auth;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
@@ -212,7 +215,7 @@ namespace Vemini
                     Application.Current.Properties.Add("Id", user.Id);
                     Application.Current.Properties.Add("UserName", user.UserName);
                     Application.Current.Properties.Add("EmailAddress", user.Email);
-                    Application.Current.Properties.Add("ProfilePicture", user.Picture);
+                    Application.Current.Properties.Add("ProfilePicture", user.Img);
 
 
                     await Navigation.PushAsync(new ErrandView());
@@ -239,13 +242,13 @@ namespace Vemini
         {
 
             // Get user and password
-            string user = email_entry.Text;
+            string username = email_entry.Text;
             string password = password_entry.Text;
 
             // Create object
             var userLogin = new UserLogin
             {
-                EmailOrUsername = user,
+                EmailOrUsername = username,
                 Password = password
             };
 
@@ -254,17 +257,26 @@ namespace Vemini
 
             // Formulate request
             var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(Constants.LoginUrl, stringContent);
 
-            // Update user info
+            // Get response content
+            HttpResponseMessage response = await client.PostAsync(Constants.LoginUrl, stringContent);
             var responseString = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("test");
 
             // Check response
             if (response.IsSuccessStatusCode)
             {
 
-                // Read token
+                // Deserialize
+                var userLoginContent = JsonConvert.DeserializeObject<UserLoginResponse>(responseString);
+
+                // Read token and id
+                var token = userLoginContent.Token;
+                var id = userLoginContent.Id;
+
+                // Get user to id (with token)
+                var user = await GetUserToId(id, token);
+
+                // Update last visit
 
 
                 // Navigate forward
@@ -277,5 +289,49 @@ namespace Vemini
             }
 
         }
+
+        // Get user
+        private async Task<User> GetUserToId(int id, string token)
+        {
+
+            // Formulate request
+            var postUserRequest = new PostUserRequest()
+            {
+                Id = id,
+            };
+
+            // Pass token to clients headers
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            // Serialize object
+            string jsonContent = JsonConvert.SerializeObject(postUserRequest);
+
+            // Formulate request
+            var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            // Get response content
+            HttpResponseMessage response = await client.PostAsync(Constants.UsersUrl, stringContent);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            // Create user
+            var user = new User();
+
+            // Check response
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize
+                user = JsonConvert.DeserializeObject<User>(responseString);
+            }
+            else
+            {
+                // Display error
+                await DisplayAlert("Login", $"Can't find user to id {id}", "OK");
+            }
+
+            // Return user
+            return user;
+
+        }
+
     }
 }
