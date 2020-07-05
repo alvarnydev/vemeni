@@ -17,7 +17,7 @@ namespace Vemini.Models
         public int Type { get; set; }
 
         [JsonProperty("category")]
-        public int Category { get; set; }
+        public string Category { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }

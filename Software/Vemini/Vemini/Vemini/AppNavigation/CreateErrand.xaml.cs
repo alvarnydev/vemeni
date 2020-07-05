@@ -28,7 +28,7 @@ namespace Vemini.AppNavigation
            
            // newErrand.User = Getcurrent User 
             newErrand.Type = getPayment();
-            newErrand.Category = getCategory();
+            newErrand.Category = category_pick.SelectedItem.ToString();
             newErrand.Title = title_entry.Text;
             newErrand.Description = description_editor.Text;
             newErrand.AdresseStreet = street_entry.Text;
@@ -67,31 +67,31 @@ namespace Vemini.AppNavigation
         }
 
         //Kategorie wird in int konvertiert und zurueckgegeben
-        private int getCategory()
-        {
-            int category;
-            switch (category_pick.SelectedItem)
-            {
-                case "Supermarkt":
-                    category = 1;
-                    break;
-                case "Baumarkt":
-                    category = 2;
-                    break;
-                case "Haushaltshilfe":
-                    category = 3;
-                    break;
-                case "Tragehilfe":
-                    category = 4;
-                    break;
-                case "Sonstiges":
-                    category = 5;
-                    break;
-                default:
-                    category = 0;
-                    break;
-            }
-            return category;
-        }
+        //private int getCategory()
+        //{
+        //    int category;
+        //    switch (category_pick.SelectedItem)
+        //    {
+        //        case "Supermarkt":
+        //            category = 1;
+        //            break;
+        //        case "Baumarkt":
+        //            category = 2;
+        //            break;
+        //        case "Haushaltshilfe":
+        //            category = 3;
+        //            break;
+        //        case "Tragehilfe":
+        //            category = 4;
+        //            break;
+        //        case "Sonstiges":
+        //            category = 5;
+        //            break;
+        //        default:
+        //            category = 0;
+        //            break;
+        //    }
+        //    return category;
+        //}
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 using Vemini.Models;
 using Vemini.Services;
 
@@ -16,7 +15,7 @@ namespace Vemini
             testErrand.Id = 10;
             testErrand.User = 3;
             testErrand.Type = 0;
-            testErrand.Category = 0;
+            testErrand.Category = "Haushaltshilfe";
             testErrand.Title = "Dringende Hilfe im Garten benötigt";
             testErrand.Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
             testErrand.AddressePlz = "12343";
@@ -35,7 +34,7 @@ namespace Vemini
             testErrand.Id = 11;
             testErrand.User = 3;
             testErrand.Type = 0;
-            testErrand.Category = 0;
+            testErrand.Category = "Einkaufen";
             testErrand.Title = "Unterstützung von älterer Damen beim Einkaufen";
             testErrand.Description = "Ich bräuchte kurz Hilfe beim Aldi um die Ecke. Ich würde auch 5 Euro als Dank zahlen";
             testErrand.AddressePlz = "10243";

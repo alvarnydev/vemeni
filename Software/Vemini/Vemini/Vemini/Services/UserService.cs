@@ -42,7 +42,6 @@ namespace Vemini.Services
 
                 Application.Current.Properties.Add("ProfilePicture", user.Picture);
             }
-           
         }
 
         public async void UpdateUser()
@@ -56,6 +55,13 @@ namespace Vemini.Services
             HttpResponseMessage response = await client.PutAsync(url, content);
             Console.WriteLine("Result " + response);
             Console.WriteLine("");
+        }
+
+        public bool CheckIfRegis(string email)
+        {
+            //Get Request with User email?
+            // If Response successfull return true, otherwise return false
+            return false;
         }
     }
 }

@@ -33,48 +33,48 @@
                     </Grid.ColumnDefinitions>
                     <StackLayout Grid.Row="0" Grid.Column="0">
                         <Label Text="Vorname" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry x:Name="FirstNameEntry"></Entry>
+                            <Entry x:Name="FirstNameEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="0" Grid.Column="1">
                         <Label Text="Nachname" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry x:Name="LastNameEntry"></Entry>
+                            <Entry x:Name="LastNameEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="0">
                         <Label Text="Straße" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="StreetEntry"></Entry>
+                            <Entry  x:Name="StreetEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="1">
                         <Label Text="Hausnummer" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="StreetnumberEntry"></Entry>
+                            <Entry  x:Name="StreetnumberEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="2" Grid.Column="0">
                         <Label Text="Stadt" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="CityEntry"></Entry>
+                            <Entry  x:Name="CityEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="2" Grid.Column="1">
                         <Label Text="Postleitzahl" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="PlzEntry"></Entry>
+                            <Entry  x:Name="PlzEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="3" Grid.Column="0">
                         <Label Text="Telefonnummer" TextColor="White" Margin="0,0,0,-15"></Label>
-                        <Entry  x:Name="PhoneNumberEntry"></Entry>
+                            <Entry  x:Name="PhoneNumberEntry" TextColor="White"></Entry>
                         <Label Text=" Konto" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="0,20,0,0"></Label>
                     </StackLayout>
                     <StackLayout Grid.Row="4" Grid.Column="0">
                         <Label Text="Benutzername" TextColor="White" Margin="0,30,0,-15"></Label>
-                        <Entry  x:Name="UserEntry"></Entry>
+                            <Entry  x:Name="UserEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="4" Grid.Column="1">
                         <Label Text="E-Mail-Adresse" TextColor="White" Margin="0,30,0,-15"></Label>
-                        <Entry  x:Name="EmailEntry"></Entry>
+                            <Entry  x:Name="EmailEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="5" Grid.Column="0">
                         <Label Text="Passwort" TextColor="White" Margin="0,30,0,-15"></Label>
-                        <Entry  x:Name="PwEntry"></Entry>
+                            <Entry  x:Name="PwEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="5" Grid.Column="1">
                         <Label Text="Passwort bestätigen" TextColor="White" Margin="0,30,0,-15"></Label>
-                        <Entry  x:Name="PwConfirmEntry"></Entry>
+                            <Entry  x:Name="PwConfirmEntry" TextColor="White"></Entry>
                     </StackLayout>
                     <Button Grid.Row="6" Grid.Column="0" 
                             BackgroundColor="White" Text="Registrieren" 
