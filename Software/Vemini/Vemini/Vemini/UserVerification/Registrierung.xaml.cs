@@ -4,8 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Android.Net.Wifi.Hotspot2;
-using Android.Provider;
 using Newtonsoft.Json;
 using Vemini.AppNavigation;
 using Xamarin.Forms;

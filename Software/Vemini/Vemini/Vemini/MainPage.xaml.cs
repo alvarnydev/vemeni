@@ -19,7 +19,7 @@ namespace Vemini
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             //DependencyService.Get<Toast>().LongAlert("Das ist ein Test Toast");
-            await Navigation.PushAsync(new Anmeldung());
+            await Navigation.PushAsync(new ErrandView());
         }
     }
 }

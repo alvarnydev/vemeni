@@ -21,8 +21,8 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
 
-          
-            <maps:Map VerticalOptions="FillAndExpand" IsShowingUser="True" IsEnabled="True" MapType="Street" HeightRequest="300">
+
+            <maps:Map  IsShowingUser="True" IsEnabled="True" MapType="Street" HeightRequest="300" x:Name="map">
             </maps:Map>
 
                 <StackLayout BackgroundColor="CornflowerBlue"

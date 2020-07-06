@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Vemini.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using Xamarin.Forms.Maps;
 
 namespace Vemini.AppNavigation
 {
@@ -18,7 +20,40 @@ namespace Vemini.AppNavigation
 		{
             InitializeComponent();
             getErrandsToList();
+            DisplayCurLoc();
+        }
+        public async void DisplayCurLoc()
+        {
+            try
+            {
 
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
+
+                if (location != null)
+                {
+                    Position p = new Position(location.Latitude, location.Longitude);
+                    MapSpan mapspan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.10));
+                    map.MoveToRegion(mapspan);
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
         }
 
         private async void MenuItem_OnClickedPlus(object sender, EventArgs e)
