@@ -9,7 +9,7 @@ using Xamarin.Auth;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Vemini.Models;
 
 namespace Vemini.Services
 {
@@ -38,9 +38,9 @@ namespace Vemini.Services
                 Application.Current.Properties.Add("EmailAddress", user.Email);
                 Application.Current.Properties.Add("City", user.City);
                 Application.Current.Properties.Add("Street", user.Street);
-                
-
                 Application.Current.Properties.Add("ProfilePicture", user.Img);
+
+                StaticUser.ToStatic(user);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Vemini.Services
             Console.WriteLine("");
         }
 
-        public bool CheckIfRegis(string email)
+        public static bool CheckIfRegis(string id)
         {
             //Get Request with User email?
             // If Response successfull return true, otherwise return false

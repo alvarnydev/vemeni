@@ -6,11 +6,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Java.Util.Functions;
 using Newtonsoft.Json;
 using Vemin;
 using Vemini.AppNavigation;
 using Vemini.Models;
+using Vemini.Services;
 using Xamarin.Auth;
 using Xamarin.Auth.Presenters;
 using Xamarin.Forms;
@@ -179,7 +179,17 @@ namespace Vemini
                     Application.Current.Properties.Add("EmailAddress", facebookEmail.Email);
                     Application.Current.Properties.Add("ProfilePicture", facebookEmail.Picture.Data.Url);
 
-                    await Navigation.PushAsync(new ErrandView());
+                   // StaticUser.ToStatic(); ?
+                    //Check if User is in Database 
+                    if (UserService.CheckIfRegis(facebookEmail.Id))
+                    {
+                        await Navigation.PushAsync(new ErrandView());
+                    }
+                    else
+                    {
+
+                    }
+                   
                 }
                 //google
                 else 
@@ -217,6 +227,8 @@ namespace Vemini
                     Application.Current.Properties.Add("EmailAddress", user.Email);
                     Application.Current.Properties.Add("ProfilePicture", user.Img);
 
+                    //Add user as global 
+                    StaticUser.ToStatic(user);
 
                     await Navigation.PushAsync(new ErrandView());
                    
@@ -245,6 +257,11 @@ namespace Vemini
             string username = email_entry.Text;
             string password = password_entry.Text;
 
+            Signin(username, password);
+        }
+
+        public async void Signin(string username, string password)
+        {
             // Create object
             var userLogin = new UserLogin
             {
@@ -278,16 +295,17 @@ namespace Vemini
 
                 // Update last visit
 
-
-                // Navigate forward
-                await Navigation.PushAsync(new ErrandView());
+                if (user != null)
+                {
+                    // Navigate forward
+                    await Navigation.PushAsync(new ErrandView());
+                }
             }
             else
             {
                 // Display error
                 await DisplayAlert("Login", "User or Password is incorrect, please retry.", "OK");
             }
-
         }
 
         // Get user
@@ -321,6 +339,8 @@ namespace Vemini
             {
                 // Deserialize
                 user = JsonConvert.DeserializeObject<User>(responseString);
+                StaticUser.ToStatic(user);
+                StaticUser.Token = token;
             }
             else
             {

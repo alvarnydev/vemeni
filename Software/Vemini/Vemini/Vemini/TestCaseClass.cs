@@ -35,7 +35,7 @@ namespace Vemini
             testErrand.User = 3;
             testErrand.Type = 0;
             testErrand.Category = "Einkaufen";
-            testErrand.Title = "Unterstützung von älterer Damen beim Einkaufen";
+            testErrand.Title = "Unterstützung von älterer Dame beim Einkaufen";
             testErrand.Description = "Ich bräuchte kurz Hilfe beim Aldi um die Ecke. Ich würde auch 5 Euro als Dank zahlen";
             testErrand.AddressePlz = "10243";
             testErrand.AdresseCity = "Berlin";

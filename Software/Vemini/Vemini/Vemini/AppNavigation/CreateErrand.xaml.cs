@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Vemini.Models;
@@ -22,11 +23,14 @@ namespace Vemini.AppNavigation
          * Implemented (last): 29.06.20
          * Neuer Auftrag wird anhand der vom User eingegebenen Daten erstellt und in Datenbank geladen
          */
-        private void Button_OnClickedErstellen(object sender, EventArgs e)
+        private async void Button_OnClickedErstellen(object sender, EventArgs e)
         {
            Errand newErrand = new Errand();
-           
-           // newErrand.User = Getcurrent User 
+
+           // User user = StaticUser.ToNonStatic();
+
+           //Access input data from CreateErrand.xaml form
+            newErrand.User = Convert.ToInt32(StaticUser.Id);
             newErrand.Type = getPayment();
             newErrand.Category = category_pick.SelectedItem.ToString();
             newErrand.Title = title_entry.Text;
@@ -37,11 +41,16 @@ namespace Vemini.AppNavigation
             newErrand.AdresseCity = city_entry.Text;
             newErrand.Date = DateTime.Now;
             newErrand.Status = 0;
-            newErrand.AcceptedBy = 0;
+     
 
             try
             {
-                ErrandService.AddErrand(newErrand);
+                 var respTask = await ErrandService.AddErrand(newErrand);
+
+                 if (respTask.IsSuccessStatusCode)
+                 {
+                    DisplayAlert("Bestätigung","Auftrag wurde erstellt.", "Ok");
+                 }
             }
             catch (Exception error)
             {

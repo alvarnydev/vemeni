@@ -70,11 +70,11 @@
                     </StackLayout>
                     <StackLayout Grid.Row="5" Grid.Column="0">
                         <Label Text="Passwort" TextColor="White" Margin="0,30,0,-15"></Label>
-                            <Entry  x:Name="PwEntry" TextColor="White"></Entry>
+                            <Entry  x:Name="PwEntry" TextColor="White" IsPassword="True"></Entry>
                     </StackLayout>
                     <StackLayout Grid.Row="5" Grid.Column="1">
                         <Label Text="Passwort bestätigen" TextColor="White" Margin="0,30,0,-15"></Label>
-                            <Entry  x:Name="PwConfirmEntry" TextColor="White"></Entry>
+                            <Entry  x:Name="PwConfirmEntry" TextColor="White" IsPassword="True"></Entry>
                     </StackLayout>
                     <Button Grid.Row="6" Grid.Column="0" 
                             BackgroundColor="White" Text="Registrieren" 
