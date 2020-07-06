@@ -30,8 +30,7 @@ namespace Vemini
             // Pass token to clients headers
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {StaticUser.Token}");
 
-            var settings = new JsonSerializerSettings { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat };
-            var json = JsonConvert.SerializeObject(errand, settings);
+            var json = JsonConvert.SerializeObject(errand);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await client.PostAsync(url, content);

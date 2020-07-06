@@ -39,18 +39,23 @@ namespace Vemini.AppNavigation
             newErrand.AdresseNmbr =streetnumber_entry.Text;
             newErrand.AddressePlz = plz_entry.Text;
             newErrand.AdresseCity = city_entry.Text;
-            newErrand.Date = DateTime.Now;
+    
             newErrand.Status = 0;
      
 
             try
             {
+                // Auftrag wird an POST Funktion weitergegeben
                  var respTask = await ErrandService.AddErrand(newErrand);
 
                  if (respTask.IsSuccessStatusCode)
                  {
-                    DisplayAlert("Bestätigung","Auftrag wurde erstellt.", "Ok");
+                     //User wird nach erfolgreicher Erstellung wieder auf die Hauptseite zurueckgebracht 
+                     DisplayAlert("Bestätigung", "Auftrag wurde erstellt.", "Ok");
+                     await Navigation.PushAsync(new ErrandView());
                  }
+                 else
+                     DisplayAlert("Fehler", "Auftrag konnte leider nicht erstellt werden, versuchen Sie es noch einmal oder kontaktieren Sie den Support", "Ok");
             }
             catch (Exception error)
             {

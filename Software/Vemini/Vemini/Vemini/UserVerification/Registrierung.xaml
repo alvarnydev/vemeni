@@ -47,11 +47,11 @@
                         <Label Text="Hausnummer" TextColor="White" Margin="0,0,0,-15"></Label>
                             <Entry  x:Name="StreetnumberEntry" TextColor="White"></Entry>
                     </StackLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="0">
+                    <StackLayout Grid.Row="2" Grid.Column="1">
                         <Label Text="Stadt" TextColor="White" Margin="0,0,0,-15"></Label>
                             <Entry  x:Name="CityEntry" TextColor="White"></Entry>
                     </StackLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="1">
+                    <StackLayout Grid.Row="2" Grid.Column="0">
                         <Label Text="Postleitzahl" TextColor="White" Margin="0,0,0,-15"></Label>
                             <Entry  x:Name="PlzEntry" TextColor="White"></Entry>
                     </StackLayout>

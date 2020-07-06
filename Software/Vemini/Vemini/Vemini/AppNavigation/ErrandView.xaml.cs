@@ -38,11 +38,11 @@ namespace Vemini.AppNavigation
 
             //-----getErrands in ErrandServices----//
             // Change Berlin to User town 
-           // errandDbList = ErrandService.GetErrands("berlin");
+            errandDbList = ErrandService.GetErrands("berlin");
            //for testing
-            errandDbList.Add(TestCaseClass.GetExampleErrandShort());
-            errandDbList.Add(TestCaseClass.GetExampleErrandLong());
-            errandDbList.Add(TestCaseClass.GetExampleErrandShort());
+            //errandDbList.Add(TestCaseClass.GetExampleErrandShort());
+            //errandDbList.Add(TestCaseClass.GetExampleErrandLong());
+            //errandDbList.Add(TestCaseClass.GetExampleErrandShort());
 
             errand_listview.ItemsSource = errandDbList; //.Select(n => $"item-{n}");
             // errand_listview.ItemTemplate = new DataTemplate(ImageCell(ImageSource = this.)); //=>
@@ -55,6 +55,11 @@ namespace Vemini.AppNavigation
         {
             var selectedErrand = e.Item as Errand;
             await Navigation.PushAsync(new DetailView(selectedErrand.Title,selectedErrand.Description, selectedErrand.AddressePlz, selectedErrand.AdresseStreet, selectedErrand.AdresseNmbr, selectedErrand.AdresseCity));
+        }
+
+        private void MenuItem_OnClickedMessages(object sender, EventArgs e)
+        {
+            //Dimitry Messages Page
         }
     }
 }
