@@ -13,7 +13,7 @@ namespace Vemini
     class User
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("username")]
         public string UserName { get; set; }
@@ -57,7 +57,7 @@ namespace Vemini
 
         public User() { }
 
-        public User(string id, string userName, string email, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
+        public User(int id, string userName, string email, string link, string picture, string city, string pLZ, string street, string lastVisit, string created)
         {
             Id = id;
             Email = email;

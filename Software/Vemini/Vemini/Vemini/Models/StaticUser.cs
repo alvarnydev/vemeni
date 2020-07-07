@@ -13,7 +13,7 @@ namespace Vemini.Models
     static class StaticUser
     {
         [JsonProperty("id")]
-        public static string Id { get; set; }
+        public static int Id { get; set; }
 
         [JsonProperty("username")]
         public static string UserName { get; set; }
