@@ -33,16 +33,16 @@ namespace Vemini.Models
         [JsonProperty("email")]
         public static string Email { get; set; }
 
-        [JsonProperty("addressPlz")]
+        [JsonProperty("address_plz")]
         public static string PLZ { get; set; }
 
-        [JsonProperty("addressCity")]
+        [JsonProperty("address_city")]
         public static string City { get; set; }
 
-        [JsonProperty("addressStreet")]
+        [JsonProperty("address_street")]
         public static string Street { get; set; }
 
-        [JsonProperty("addressStrnmbr")]
+        [JsonProperty("address_strnmbr")]
         public static string StreetNumber { get; set; }
 
         [JsonProperty("img")]

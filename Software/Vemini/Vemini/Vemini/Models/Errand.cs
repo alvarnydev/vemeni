@@ -43,7 +43,7 @@ namespace Vemini.Models
         [JsonProperty("status")]
         public int Status { get; set; }
 
-        [JsonProperty("acceptedBy")]
+        [JsonProperty("accepted_by")]
         public int? AcceptedBy { get; set; }
     }
 }
