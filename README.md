@@ -1,27 +1,14 @@
-## Start-Nachricht
+<p align="center">
+  <img width="128" align="center" src="/Software/Frontend/Vemini/Vemini/app_icon_Ajf_icon.ico">
+</p>
+<h1 align="center">
+  VeMeNi - Vergiss Mein Nicht
+</h1>
+<p align="center">
+  An application to bring people together in times of Covid and social distancing
+</p>
 
-Hallo zusammen,
+## Overview
 
-in der vorliegenden Repository ist eine Struktur für die Abgaben vorgegeben.
-
-Bitte platzieren Sie Ihre Deliverables entsprechend der Struktur, z.B. Lastenheft in den Ordner ../Dokumentation/01-Lastenheft etc.
-
-Der Ordner ../Software ist für Ihr Source Code und sonstigen SW-Artifakte vorgesehen. Arbeiten Sie bitte gegen dieses Repository und halten Sie es aktuell.
-
-Viel Erfolg
-Mohammad Abuosba
-
-
-## API
-API-Entwicklung ist im Branch **backend** in dem Ordner Software/AspNet/WebApiOAuth2
-
-## Web App
-Webseite ist in neuen Branch **webapp**(pause)
-
-## Mobile Applikation
-Mit Xamarin entwickelte Applikation ist im Software Ordner auf dem **master** Branch zu finden
-
-## APK
-Im **master** Branch unter Software zu finden
-
-
+This application was designed as part of a university course during the summer semester of 2020.
+The idea was for users to either offer help or ask for help and then bring the two groups together.
