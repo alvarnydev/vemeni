@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vemini.AppNavigation.CreateErrand">
+    <ContentPage.Content>
+        <StackLayout Padding="0,10,0,0" BackgroundColor="CornflowerBlue">
+            <Label Text="Auftrag erstellen"
+                   TextColor="White"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+               />
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Lieferadresse" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="10,20,0,10"></Label>
+                    <Grid  Padding="10,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                       
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="Straße" TextColor="White" Margin="5,0,0,-15"></Label>
+                            <Entry  x:Name="street_entry" TextColor="White"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <Label Text="Hausnummer" TextColor="White" Margin="5,0,0,-15"></Label>
+                            <Entry  x:Name="streetnumber_entry" TextColor="White"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <Label Text="Plz" TextColor="White" Margin="5,0,0,-15"></Label>
+                            <Entry  x:Name="plz_entry" TextColor="White"></Entry>
+                            <Label Text=" Auftragsdetails" TextColor="White" FontAttributes="Bold" FontSize="20" Margin="0,20,0,10"></Label>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <Label Text="Stadt" TextColor="White" Margin="5,0,0,-15"></Label>
+                            <Entry  x:Name="city_entry" TextColor="White"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Picker x:Name="category_pick" Title="Kategorie" TitleColor="White" BackgroundColor="CornflowerBlue"  
+                                    HorizontalOptions="FillAndExpand" Margin="0,0,90,-15" TextColor="White">
+                             <Picker.Items>
+                                <x:String>Supermarkt</x:String>
+                                 <x:String>Baumarkt</x:String>
+                                <x:String>Haushaltshilfe</x:String>
+                                <x:String>Tragehilfe</x:String>
+                                 <x:String>Sonstiges</x:String>
+                            </Picker.Items>
+                            </Picker>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <!--<Picker x:Name="urgency_pick" Title="Dringlichkeit" TitleColor="White" BackgroundColor="CornflowerBlue"  
+                                HorizontalOptions="FillAndExpand" Margin="0,20,90,0">
+                            <Picker.Items>
+                                <x:String>Sofort</x:String>
+                                <x:String>In den nächsten Stunden</x:String>
+                                <x:String>Heute</x:String>
+                                <x:String>Die nächsten Tage</x:String>
+                                <x:String>Nicht dringend</x:String>
+                                <x:String>Generell</x:String>
+                            </Picker.Items>
+                        </Picker>-->
+                        <Label Text="Titel" TextColor="White" Margin="5,0,0,-15"></Label>
+                            <Entry  x:Name="title_entry" TextColor="White"></Entry>
+                        </StackLayout>
+                       
+                        <StackLayout Grid.Row="8" Grid.Column="0">
+                            <Label Text="Bezahlung" TextColor="White" Margin="100,30,0,-15"></Label>
+                        </StackLayout>
+                        <StackLayout Grid.Row="8" Grid.Column="1">
+                            <CheckBox Margin="-10,23,0,0" Color="White" x:Name="payment_cB"></CheckBox>
+                        </StackLayout>
+                    <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                <Label Text="Notizen" TextColor="White" Margin="10,20,0,-15"></Label>
+                                <Editor BackgroundColor="White" Margin="10,20,20,0" Placeholder="Beschreibung, Einkaufsliste, etc..." 
+                                        PlaceholderColor="LightGray" FontSize="Medium" AutoSize="TextChanges"
+                                        HeightRequest="200" x:Name="description_editor">
+                                </Editor>
+                            </StackLayout>
+                        <Button Grid.Row="9" Grid.Column="0" 
+                                BackgroundColor="White" Text="Erstellen" 
+                                TextColor="CornflowerBlue"
+                                Margin="10,20,10,20"
+                                Clicked="Button_OnClickedErstellen"
+                        ></Button>
+                    </Grid>
+                </StackLayout>
+            </ScrollView> 
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

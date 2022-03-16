@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vemini"
+             x:Class="Vemini.MainPage"
+             >
+
+    <!--
+    * Author: Benedikt Blank
+    * Implemented: 26.05.20
+    * Welcome page, before getting through clicking on a button to the login page 
+    *
+    -->
+
+    <StackLayout BackgroundColor="CornflowerBlue">
+        <Label Text="Willkommen bei VergissMeinNicht!"
+               TextColor="White"
+               FontSize="26"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand" 
+        />
+        
+        <Button BackgroundColor="White" 
+                Text="     Los geht's!    "
+                TextColor="CornflowerBlue"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked="Button_OnClicked"
+        />
+    </StackLayout>
+
+</ContentPage>
