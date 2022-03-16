@@ -19,7 +19,7 @@ The idea was for users to either offer help or ask for help and then bring the t
 * **Dmitry Savkin**
 * **Wajdi Helali**
 * **Yannik Sahl**
-* 
+
 # License
 
 This project is licensed under the MIT license.
