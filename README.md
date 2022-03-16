@@ -10,5 +10,5 @@
 
 ## Overview
 
-This application was designed as part of a university course during the summer semester of 2020.
+This application was designed as part of a university course during the summer semester of 2020.  
 The idea was for users to either offer help or ask for help and then bring the two groups together.
