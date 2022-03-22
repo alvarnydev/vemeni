@@ -8,18 +8,18 @@
   An application to bring people together in times of Covid and social distancing
 </p>
 
-## Overview
+# Overview
 
 This application was designed and developed as part of a university course during the summer semester of 2020.  
 The idea was for users to either offer help or ask for help and then bring the two groups together.
 
-# Authors
+## Authors
 
 * **Benedikt Blank**
 * **Dmitry Savkin**
 * **Wajdi Helali**
 * **Yannik Sahl**
 
-# License
+## License
 
 This project is licensed under the MIT license.
