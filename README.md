@@ -11,7 +11,7 @@
 # Overview
 
 This application was designed and developed as part of a university course during the summer semester of 2020.  
-The idea was for users to either offer help or ask for help and then bring the two groups together.
+The idea was for users to either offer help or ask for help (for things like grocery shopping) and then bring the two groups together.
 
 ## Authors
 
